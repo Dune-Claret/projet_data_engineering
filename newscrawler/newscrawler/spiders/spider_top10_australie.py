@@ -2,8 +2,8 @@ import scrapy
 from scrapy import Request
 
 
-class AEIApider(scrapy.Spider):
-    name = "riaa"
+class ARIApider(scrapy.Spider):
+    name = "ARIA"
     allowed_domains = ["www.aria.com.au"]
     start_urls = ['https://www.aria.com.au/charts/2010/end-of-decade-albums-chart']
 

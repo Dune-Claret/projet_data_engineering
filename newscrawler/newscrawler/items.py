@@ -8,7 +8,7 @@ from scrapy.item import Item, Field
 
 
 
-class StackItem(Item):
+class AlbumItem(Item):
     album_title = Field()
     artist = Field()
     label = Field()
