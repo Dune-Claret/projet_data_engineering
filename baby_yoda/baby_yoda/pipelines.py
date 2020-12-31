@@ -8,7 +8,7 @@
 from itemadapter import ItemAdapter
 import pymongo
 import logging
-from webdriver import get_genre_year_price
+#from baby_yoda.webdriver import get_genre_year_price
 
 class BabyYodaPipeline:
     collection_name = 'top_albums'
@@ -32,15 +32,13 @@ class BabyYodaPipeline:
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert_one(dict(item))
-        artist = item['artist']
-        album_title = item['album_title']
-        genre, year, price = get_genre_year_price(artist, album_title)
+        #self.searching_keys.append({"artist" : item['artist'], "album_title" : item['album_title']})
+        
+        """genre, year, price = get_genre_year_price(item['artist'], item['album_title'])
         item["genre"] = genre
         item["year"] = year
-        item["price"] = price
+        item["price"] = price"""
         self.db[self.collection_name].insert_one(dict(item))
-        
         logger = logging.getLogger()
         logger.warning(next(self.db[self.collection_name].find({})))
         return item

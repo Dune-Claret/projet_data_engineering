@@ -1,1 +1,10 @@
 [1227/185115.707:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)
+[1231/155919.037:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[1231/155919.039:ERROR:exception_snapshot_win.cc(99)] thread ID 15864 not found in process
+[1231/155919.057:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[1231/155919.057:ERROR:exception_snapshot_win.cc(99)] thread ID 13416 not found in process
+[1231/165734.716:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)
+[1231/170929.087:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[1231/170929.089:ERROR:exception_snapshot_win.cc(99)] thread ID 2336 not found in process
+[1231/170929.104:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[1231/170929.104:ERROR:exception_snapshot_win.cc(99)] thread ID 8216 not found in process

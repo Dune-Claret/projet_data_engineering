@@ -13,7 +13,3 @@ class AlbumItem(Item):
     artist = Field()
     label = Field()
     certif_UT = Field()
-    genre = Field()
-    year = Field()
-    price = Field()
-    country = Field()

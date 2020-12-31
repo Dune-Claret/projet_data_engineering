@@ -1,12 +1,10 @@
 import scrapy
 from scrapy import Request
-from baby_yoda.baby_yoda.items import AlbumItem
-#from baby_yoda.items import AlbumItem
-from scrapy.crawler import CrawlerProcess
+from newscrawler.items import AlbumItem
 
 
-class USASpider(scrapy.Spider):
-    name = "USA"
+class RIAASpider(scrapy.Spider):
+    name = "riaa"
     allowed_domains = ["www.riaa.com"]
     start_urls = ['https://www.riaa.com/gold-platinum/?tab_active=awards_by_album#search_section']
 
@@ -22,12 +20,5 @@ class USASpider(scrapy.Spider):
                 album_item['label'] = other_info[1]
                 certif_UT = album.xpath('td[@class="others_cell format_cell"]/text()').extract_first()
                 album_item['certif_UT'] = re.findall(r"\r\n                    (.+?)                    ",certif_UT)[0]
-                album_item['certif_UT'] += "000000"
-                album_item['country'] = "USA"
                 cpt += 1 
                 yield album_item
-
-if __name__ == "__main__":
-  process = CrawlerProcess()
-  process.crawl(USASpider)
-  process.start()

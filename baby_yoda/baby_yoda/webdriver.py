@@ -17,17 +17,12 @@ def get_genre_year_price(artist, album_title):
     #search the album
     search_bar_discogs = chrome.find_element_by_id("search_q")
     search_bar_discogs.click()
-    search_bar_discogs.send_keys(album_title)
+    search_bar_discogs.send_keys(album_title + " " + artist)
 
-    #show the searching result menu
+    #show the searching result menu and click on the first element 
     time.sleep(3)
-    cartes = chrome.find_elements_by_class_name("ui-menu-item")
-
-    #select the album with the correct artist on the menu
-    for menu_item in cartes:
-        if(menu_item.find_element_by_class_name("sublabel").text == artist):
-            menu_item.click()
-            break
+    elements = chrome.find_elements_by_class_name("ui-menu-item")
+    elements[0].click()
 
     #get the genre and the year as album information and show it 
     infos = chrome.find_elements_by_class_name("content")

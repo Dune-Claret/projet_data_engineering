@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Request
-from baby_yoda.items import AlbumItem
+from baby_yoda.baby_yoda.items import AlbumItem
+#from baby_yoda.items import AlbumItem
 
 class FR1Spider(scrapy.Spider):
     name = "FR1"
@@ -39,6 +40,7 @@ class FR1Spider(scrapy.Spider):
                 album_item['album_title'] = album_titles[i]
                 album_item['label'] = labels[i]
                 album_item['certif_UT'] = certif_UTs[i]
+                album_item['country'] = "France"
                 yield album_item
 
 

@@ -1,7 +1,7 @@
 import scrapy
 from scrapy import Request
-from baby_yoda.items import AlbumItem
-
+from baby_yoda.baby_yoda.items import AlbumItem
+#from baby_yoda.items import AlbumItem
 
 
 class UKSpider(scrapy.Spider):
@@ -23,5 +23,5 @@ class UKSpider(scrapy.Spider):
                 album_item['certif_UT'] = album.xpath('p/text()').extract_first()[:2] + "000000"
                 label = album.xpath('figure[@class="figure image-figure-image "]/span/span/text()').extract_first()
                 album_item['label'] = re.findall(r"\n                                                (.+?)\n                                              ", label)[0]
-
+                album_item['country'] = "UK"
                 yield album_item
