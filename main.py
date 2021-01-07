@@ -7,7 +7,10 @@ from baby_yoda.baby_yoda.webdriver import get_genre_year_price
 from scrapy.crawler import Crawler
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
+import re
 
+
+#settings of scrapy
 settings = Settings(values={
     'BOT_NAME' : 'baby_yoda',
 
@@ -31,17 +34,11 @@ collection.delete_many({})
 #start all spiders
 process = CrawlerProcess(settings=settings)
 process.crawl(USASpider)
-"""process.crawl(UKSpider)
+process.crawl(UKSpider)
 process.crawl(FR1Spider)
-process.crawl(FR2Spider)"""
+process.crawl(FR2Spider)
 process.start()
 
-"""import pymongo
-from pymongo import MongoClient
-
-client = MongoClient()
-db = client.baby_yoda
-collection = db['top_albums']"""
 
 cur = collection.find({})
 nbr_album = cur.count()
@@ -51,9 +48,9 @@ for i in range(nbr_album):
     album_title = album["album_title"]
     artist = album["artist"]
     genre, year, price = get_genre_year_price(artist, album_title)
-    collection.update_one({"album_title":album_title}, {"$set":{"genre":genre, "year" : year, "price" : price}})
+    genres = re.split('\W+', genre)
 
-
+    collection.update_one({"album_title":album_title}, {"$set":{"genre":genres, "year" : year, "price" : price}})
 
 
 

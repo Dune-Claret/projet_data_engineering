@@ -33,12 +33,6 @@ class BabyYodaPipeline:
 
     def process_item(self, item, spider):
         #self.searching_keys.append({"artist" : item['artist'], "album_title" : item['album_title']})
-        
-        """genre, year, price = get_genre_year_price(item['artist'], item['album_title'])
-        item["genre"] = genre
-        item["year"] = year
-        item["price"] = price"""
+        item["certif_UT"] = int(item["certif_UT"])
         self.db[self.collection_name].insert_one(dict(item))
-        logger = logging.getLogger()
-        logger.warning(next(self.db[self.collection_name].find({})))
         return item

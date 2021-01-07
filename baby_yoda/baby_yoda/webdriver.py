@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common import exceptions  
 
 def get_genre_year_price(artist, album_title):
 
@@ -12,22 +14,46 @@ def get_genre_year_price(artist, album_title):
 
     #accept cookies ==> to allow the following scraping
     button_cookies = chrome.find_element_by_id("onetrust-accept-btn-handler")
-    button_cookies.click()
+    if button_cookies is not None :
+        button_cookies.click()
 
     #search the album
     search_bar_discogs = chrome.find_element_by_id("search_q")
     search_bar_discogs.click()
-    search_bar_discogs.send_keys(album_title + " " + artist)
+    search_bar_discogs.send_keys(album_title + " ‎– " + artist)
 
     #show the searching result menu and click on the first element 
     time.sleep(3)
-    elements = chrome.find_elements_by_class_name("ui-menu-item")
-    elements[0].click()
+    cartes = chrome.find_elements_by_class_name("ui-menu-item")
+    cpt = 0
+    for element in cartes :
+        cpt += 1
+        try :
+            if "(toutes les versions)" in element.text:
+                element.click()
+                break
+        except exceptions.StaleElementReferenceException:
+            pass
+    if cpt == len(cartes) :
+        cartes[0].click()
+
+
+
 
     #get the genre and the year as album information and show it 
+    heads = chrome.find_elements_by_class_name('head')
     infos = chrome.find_elements_by_class_name("content")
-    genre = [element.text for element in infos][0]
-    year = [element.text for element in infos][2]
+    iterator_genre = 0
+    iterator_year = 0
+    for i in range(len(heads)):
+        if heads[i].text == "Genre:":
+            iterator_genre = i
+        elif heads[i].text in ["Year:", "Année:", "Sortie:"] :
+            iterator_year = i
+        else : pass
+            
+    genre = [element.text for element in infos][iterator_genre]
+    year = int([element.text for element in infos][iterator_year])
     print(genre)
     print(year)
 
@@ -39,10 +65,15 @@ def get_genre_year_price(artist, album_title):
     search_bar_amazon.send_keys(artist + " " + album_title + " CD")
     button_search = chrome.find_element_by_id("nav-search-submit-text")
     button_search.click()
-    price = chrome.find_element_by_class_name("a-price-whole")
-    print(price.text)
+    try :
+        prices = chrome.find_elements_by_class_name("a-price-whole")
+        price = float(prices[0].text.replace(",", "."))
+        print(price)
+    except NoSuchElementException:
+        price = 0
 
-    return genre, year, price.text
+    chrome.close()
+    return genre, year, price
     """#connect the site Fnac ==> to get the price of the album
     chrome.get("https://www.fnac.com")
 
