@@ -37,3 +37,15 @@
 [0106/224834.884:ERROR:exception_snapshot_win.cc(99)] thread ID 11372 not found in process
 [0106/224834.943:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
 [0106/224834.943:ERROR:exception_snapshot_win.cc(99)] thread ID 11420 not found in process
+[0107/205558.240:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0107/205558.242:ERROR:exception_snapshot_win.cc(99)] thread ID 18332 not found in process
+[0107/205558.262:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0107/205558.262:ERROR:exception_snapshot_win.cc(99)] thread ID 18336 not found in process
+[0107/212656.203:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0107/212656.205:ERROR:exception_snapshot_win.cc(99)] thread ID 8024 not found in process
+[0107/212656.206:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0107/212656.207:ERROR:exception_snapshot_win.cc(99)] thread ID 14036 not found in process
+[0107/212656.229:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0107/212656.230:ERROR:exception_snapshot_win.cc(99)] thread ID 14340 not found in process
+[0107/223356.286:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)
+[0107/225532.094:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)

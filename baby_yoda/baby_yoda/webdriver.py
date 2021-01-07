@@ -23,7 +23,7 @@ def get_genre_year_price(artist, album_title):
     search_bar_discogs.send_keys(album_title + " ‎– " + artist)
 
     #show the searching result menu and click on the first element 
-    time.sleep(3)
+    chrome.implicitly_wait(5)
     cartes = chrome.find_elements_by_class_name("ui-menu-item")
     cpt = 0
     for element in cartes :

@@ -49,7 +49,10 @@ for i in range(nbr_album):
     artist = album["artist"]
     genre, year, price = get_genre_year_price(artist, album_title)
     genres = re.split('\W+', genre)
-
+    if 'Hip' in genres:
+        index = genres.index('Hip')
+        genres[index] = 'Hip Hop'
+        genres.remove(genres[index+1])
     collection.update_one({"album_title":album_title}, {"$set":{"genre":genres, "year" : year, "price" : price}})
 
 
