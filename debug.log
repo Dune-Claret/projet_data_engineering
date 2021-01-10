@@ -49,3 +49,10 @@
 [0107/212656.230:ERROR:exception_snapshot_win.cc(99)] thread ID 14340 not found in process
 [0107/223356.286:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)
 [0107/225532.094:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)
+[0110/152534.519:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0110/152534.521:ERROR:exception_snapshot_win.cc(99)] thread ID 13072 not found in process
+[0110/152534.522:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0110/152534.522:ERROR:exception_snapshot_win.cc(99)] thread ID 4600 not found in process
+[0110/152534.540:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acc¨¨s refus¨¦} Un processus a demand¨¦ l¡¯acc¨¨s a un objet, mais il ne b¨¦n¨¦ficie pas des autorisations n¨¦cessaires. (0xc0000022)
+[0110/152534.540:ERROR:exception_snapshot_win.cc(99)] thread ID 11720 not found in process
+[0110/153726.107:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d¡¯acc¨¨s sp¨¦cifi¨¦ est introuvable. (0x3)
