@@ -30,7 +30,8 @@ def get_genre_year_price(artist, album_title):
         cpt += 1
         try :
             if "(toutes les versions)" in element.text:
-                element.click()
+                #element.click()
+                chrome.execute_script("arguments[0].click();", element)
                 break
         except exceptions.StaleElementReferenceException:
             pass

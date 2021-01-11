@@ -43,8 +43,8 @@ process.start()
 cur = collection.find({})
 nbr_album = cur.count()
 
-for i in range(nbr_album):
-    album = next(cur)
+
+for album in list(cur):
     album_title = album["album_title"]
     artist = album["artist"]
     genre, year, price = get_genre_year_price(artist, album_title)
