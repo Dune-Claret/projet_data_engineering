@@ -1,5 +1,5 @@
 """
-Module pour la page obesity.
+Module pour la page france.
 """
 
 # Imports
@@ -14,82 +14,82 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 # Imports de fichiers en local
-#from src.paths import obesityPath, countriesPath
-#from src.process_data import process_obesity
+#from src.paths import francePath, countriesPath
+#from src.process_data import process_france
 
 # Chargement des donnees
-#obesity = pd.read_csv(obesityPath, index_col=0)
+#france = pd.read_csv(francePath, index_col=0)
 
 #with open(countriesPath) as f:
 #    countriesGeoJson = json.load(f)
 
 # Traitement des donnees
-#obesity = process_obesity(obesity)
+#france = process_france(france)
 
 # Fonctions pour la page
-def graph_map_page_two(year):
+def graph_map_france(year):
     """
     Retourne une carte representant le pourentage d'obesite pour
     chaque pays dans le monde pour une annee donnee.
     """
 
     # Filtre les donnees par rapport a l'annee
-    #df = obesity.query("year == {} and sex == 'B'".format(year))
+    #df = france.query("year == {} and sex == 'B'".format(year))
 
     # Creation de la map
-    #mapObesity = px.choropleth_mapbox(
+    #mapFrance = px.choropleth_mapbox(
     #    data_frame = df,
     #    geojson = countriesGeoJson,
     #    locations = "country_code",
-    #    color = "obesity",
+    #    color = "france",
     #    color_continuous_scale="Brwnyl",
-    #    range_color=(obesity.obesity.min(), obesity.obesity.max()),
+    #    range_color=(france.france.min(), france.france.max()),
     #    mapbox_style = 'carto-darkmatter',
     #    center = {"lat": 33.0902, "lon": -35.7129},
     #    zoom = 1,
     #    hover_name = df.country,
-    #    hover_data = ["obesity", "continent"]
+    #    hover_data = ["france", "continent"]
     #)
 
-    #mapObesity.update_layout(
+    #mapFrance.update_layout(
     #    margin=dict(l=0, r=0, t=0, b=0),
     #    paper_bgcolor='rgba(0,0,0,0)',
-    #    legend_title_text='Obesity (%)',
+    #    legend_title_text='France (%)',
     #    font=dict(
     #        color="white",
     #        size=12
     #    )
     #)
-    #mapObesity.layout.coloraxis.colorbar.title = "Obesity (%)"
-    #mapObesity.layout.coloraxis.colorbar.x = 0.9
+    #mapFrance.layout.coloraxis.colorbar.title = "France (%)"
+    #mapFrance.layout.coloraxis.colorbar.x = 0.9
 
-    #return mapObesity
+    #return mapFrance
     return 0
 
-def graph_bar_page_two(year):
+def graph_bar_france(year):
     """
     Retourne un histogramme representant la distribution des
     pourcentage d'obesite selon les pays pour une annee donnee.
     """
 
     # Filtre les donnees par rapport a l'annee
-    #df = obesity.query("year == {} and sex == 'B'".format(year))
+    #df = france.query("year == {} and sex == 'B'".format(year))
     
     # Le pas
     #step = 2.5
     
     # Creation des donnees
     #hist, bins = np.histogram(
-    #    df.obesity,
+    #    df.france,
     #    bins = np.arange(
-    #        obesity.obesity.min(),
-    #        obesity.obesity.max()+step,
+    #        france.france.min(),
+    #        france.france.max()+step,
     #        step
     #    )
     #)
 
     # Creation de l'histogramme
-    #histogramObesity = go.Figure(
+    #histogramFrance = go.Figure(
     #    data = [
     #        go.Bar(
     #            x = [str(str(int(eBin)) + "-" + str(int(eBin+step)) + "%") for eBin in bins],
@@ -100,7 +100,7 @@ def graph_bar_page_two(year):
     #    ]
     #)
 
-    #histogramObesity.update_layout(
+    #histogramFrance.update_layout(
     #    height=330,
     #    bargap=0,
     #    margin=dict(l=8, r=8, t=8, b=0),
@@ -110,9 +110,9 @@ def graph_bar_page_two(year):
     #    yaxis_showticklabels=False,
     #)
 
-    #histogramObesity.layout.xaxis.color = 'white'
+    #histogramFrance.layout.xaxis.color = 'white'
     
-    #histogramObesity.update_traces(
+    #histogramFrance.update_traces(
     #    texttemplate='%{text:.2s}',
     #    textposition='outside',
     #    textfont=dict(
@@ -121,10 +121,10 @@ def graph_bar_page_two(year):
     #    )
     #)
 
-    #return histogramObesity
+    #return histogramFrance
     return 0
 
-def graph_line_page_two_group(pMinYear, pMaxYear, pGroupType, pLocation):
+def graph_line_france_group(pMinYear, pMaxYear, pGroupType, pLocation):
     """
     Retourne un graphique avec deux courbes representant l'evolution
     de l'obesite au sein d'un pays/continent pour chaque sexe dans un
@@ -141,7 +141,7 @@ def graph_line_page_two_group(pMinYear, pMaxYear, pGroupType, pLocation):
     #sex_filter = "sex != 'B'"
 
     # Filtre les donnees
-    #df = obesity.query(interval_filter + " and " + group_filter + " and " + sex_filter)
+    #df = france.query(interval_filter + " and " + group_filter + " and " + sex_filter)
 
     # Regroup si continent
     #if pGroupType != "Countries":
@@ -153,13 +153,13 @@ def graph_line_page_two_group(pMinYear, pMaxYear, pGroupType, pLocation):
     #    lineplot = px.line(
     #        df.replace({"sex":{"M":"Male", "F":"Female"}}),
     #        x="year",
-    #        y="obesity",
+    #        y="france",
     #        color="sex"
     #    )
 
         # Modification d'elements du graphique
         #lineplot.update_layout(
-        #    title="Evolution of obesity percentage by sex",
+        #    title="Evolution of france percentage by sex",
         #    legend_title="",
         #    margin=dict(l=4, r=4, t=40, b=4),
         #    paper_bgcolor='rgba(48,48,48,1)',
@@ -169,7 +169,7 @@ def graph_line_page_two_group(pMinYear, pMaxYear, pGroupType, pLocation):
         #        color="white"
         #    ),
         #    xaxis=dict(title="Year"),
-        #    yaxis=dict(title="Obesity (%)")
+        #    yaxis=dict(title="france (%)")
         #)
 
 
@@ -178,7 +178,7 @@ def graph_line_page_two_group(pMinYear, pMaxYear, pGroupType, pLocation):
         #return None
     return 0
 
-def graph_pie_page_two_group(year, pGroupType, pLocation):
+def graph_pie_france_group(year, pGroupType, pLocation):
     """
     Retourne un graphique camenbert representant:
     - Un pays par rapport a son continent
@@ -199,13 +199,13 @@ def graph_pie_page_two_group(year, pGroupType, pLocation):
 
     # Filtre les donnees
     #and_space = " and "
-    #df = obesity.query(year_filter + and_space + group_filter + and_space + sex_filter)
+    #df = france.query(year_filter + and_space + group_filter + and_space + sex_filter)
 
     # Cas d'un pays
     #if pGroupType == "Countries":
         # Donnees pour le camenbert
         #try:
-            #obese = float(df.obesity)
+            #obese = float(df.france)
         #except:
             #obese = 0
         
@@ -213,7 +213,7 @@ def graph_pie_page_two_group(year, pGroupType, pLocation):
     #else:
         # Donnees pour le camenbert
         #try:
-            #obese = float(df.obesity.mean())
+            #obese = float(df.france.mean())
         #except:
             #obese = 0
     
@@ -231,7 +231,7 @@ def graph_pie_page_two_group(year, pGroupType, pLocation):
 
     # Modification d'elements du graphique
     #pie_chart.update_layout(
-    #    title="Percentage of obesity in population",
+    #    title="Percentage of france in population",
     #    legend_title="",
     #    margin=dict(l=4, r=4, t=40, b=4),
     #    paper_bgcolor='rgba(48,48,48,1)',
@@ -249,7 +249,7 @@ def graph_pie_page_two_group(year, pGroupType, pLocation):
     #return pie_chart
     return 0
 
-def rank_page_two_group(year, pGroupType, pLocation):
+def rank_france_group(year, pGroupType, pLocation):
     """
     Retourne un tuple (rank, n) tel que:
     - rank : le rang du pays/continent par rapport a ses confreres
@@ -262,25 +262,25 @@ def rank_page_two_group(year, pGroupType, pLocation):
     #rank, n = None, None
 
     # Pre-selection
-    #obesitySelect = obesity.query('year == {} and sex == "B"'.format(year))
+    #franceSelect = france.query('year == {} and sex == "B"'.format(year))
 
     # Tri des donnees
-    #obesitySelectSorted = obesitySelect.sort_values(by="obesity").copy()
+    #franceSelectSorted = franceSelect.sort_values(by="france").copy()
 
     # Regroupement pour les continents
     #if pGroupType == "Continents":
-    #    obesitySelectSorted = obesitySelectSorted.groupby("continent").mean()
+    #    franceSelectSorted = franceSelectSorted.groupby("continent").mean()
 
     # Reset l'index
-    #new_index = np.arange(1, obesitySelectSorted.shape[0] + 1)
+    #new_index = np.arange(1, franceSelectSorted.shape[0] + 1)
     #if pGroupType == "Countries":
-    #    obesitySelectSorted = obesitySelectSorted.set_index(new_index)
+    #    franceSelectSorted = franceSelectSorted.set_index(new_index)
     #else:
-    #    obesitySelectSorted = obesitySelectSorted[['obesity']].reset_index(level='continent').set_index(new_index)
+    #    franceSelectSorted = franceSelectSorted[['france']].reset_index(level='continent').set_index(new_index)
 
     #try:
         # Recupere le rang
-        #rank = obesitySelectSorted.index[obesitySelectSorted['country' if pGroupType == "Countries" else 'continent'] == pLocation].tolist()
+        #rank = franceSelectSorted.index[franceSelectSorted['country' if pGroupType == "Countries" else 'continent'] == pLocation].tolist()
         #n = new_index.max()
 
         #return rank[0], n
@@ -299,10 +299,10 @@ def generate_dropdown(dataframe, feature):
 
 
 # Variables pour les elements de la page
-minYear = 1952 #obesity.year.min()
-maxYear = 2020 #obesity.year.max()
-dropdown_continents = ["Amérique du Nord", "Amérique du Sud", "Europe", 'Asie', 'Océanie'] #generate_dropdown(obesity, 'continent')
-dropdown_countries = ["USA", "France", "Australie"] #generate_dropdown(obesity, 'country')
+minYear = 1952 #france.year.min()
+maxYear = 2020 #france.year.max()
+dropdown_continents = ["Amérique du Nord", "Amérique du Sud", "Europe", 'Asie', 'Océanie'] #generate_dropdown(france, 'continent')
+dropdown_countries = ["USA", "France", "Australie"] #generate_dropdown(france, 'country')
 
 # Selection du type de groupe
 radioitems = dbc.FormGroup(
@@ -314,92 +314,119 @@ radioitems = dbc.FormGroup(
                 {"label": "Continent", "value": "Continents"},
             ],
             value="Countries",
-            id="radioitems-page-two-group",
+            id="radioitems-france-group",
         ),
     ]
 )
 
-# Page pour obesite
-pageTwo = html.Div([
+# Page pour France
+pageFrance = html.Div([
 
     # Cote gauche
     html.Div(
         [
             # Titre
-            html.H4("Menu"),
+            html.H4("Top 10"),
 
             # Break
             html.Br(),
             html.Hr(style={"background-color":"white"}),
 
             # Titre 2
-            html.H5(id="label-year-page-two"),
-
-            # Div du slider pour l'annee
-            html.Div([
-
-                html.Li([dbc.Label(["Select a year using the slider"])]),
-
-                # Dropdown pour l'annee
-                dcc.Slider(
-                    id="dropdown-page-two-year",
-                    value=minYear,
-                    min=minYear,
-                    max=maxYear,
-                    step=1
-                ),
-            ]),
+            dbc.Button("Album1", id="button-france-album1", color="light", outline=True, className="mr-1"),
 
             # Separation
             html.Hr(style={"background-color":"white"}),
 
             # Titre 3
-            html.H5("Group"),
+            dbc.Button("Album2", id="button-france-album2", color="light", outline=True, className="mr-1"),
 
-            # Selection du type de groupe (pays/continent)
-            radioitems,
-
-            # Selection de la region specifique
-            html.Li([dbc.Label(["Select a specific location"])]),
-            dcc.Dropdown(
-                id='dropdown-page-two-group-location',
-                clearable=True,
-                style={"color":"black"}
-            ),
+            # Separation
             html.Br(),
             html.Hr(style={"background-color":"white"}),
 
-            # Confirmation de requête
-            html.H5("Confirm"),
-            html.Li([dbc.Label(["Press the button to confirm"])]),
-            dbc.Button("Submit", id="button-page-two-group", color="light", outline=True, className="mr-1"),
+            # Titre 4
+            dbc.Button("Album3", id="button-france-album3", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 5
+            dbc.Button("Album4", id="button-france-album4", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 6
+            dbc.Button("Album5", id="button-france-album5", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 7
+            dbc.Button("Album6", id="button-france-album6", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 8
+            dbc.Button("Album7", id="button-france-album7", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 9
+            dbc.Button("Album8", id="button-france-album8", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 10
+            dbc.Button("Album9", id="button-france-album9", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),
+
+            # Titre 11
+            dbc.Button("Album10", id="button-france-album10", color="light", outline=True, className="mr-1"),
+
+            # Separation
+            html.Br(),
+            html.Hr(style={"background-color":"white"}),  
 
             # Fenetre pour region specifiee
             dbc.Modal(
                 [
                     # Fenetre: Titre
-                    dbc.ModalHeader(id="header-page-two-group"),
+                    dbc.ModalHeader(id="header-france-group"),
 
                     # Fenetre: Corps
                     dbc.ModalBody([
 
-                        # Gauche: Graphique obesite homme/femme
+                        # Gauche: Graphique France homme/femme
                         html.Div([
                             dbc.Card([
                                 dbc.CardBody([
-                                    dcc.Graph(id="lineplot-page-two-graph", style={"height":520})
+                                    dcc.Graph(id="lineplot-france-graph", style={"height":520})
                                 ]),
 
                                 dbc.CardFooter([
                                     # Label des annees du slider
                                     dbc.Label(
                                         "From {} to {}:".format(minYear, maxYear),
-                                        id="label-page-two-group-graph",
+                                        id="label-france-group-graph",
                                     ),
 
                                     # Selection de l'interval
                                     dcc.RangeSlider(
-                                        id="slider-page-two-group-graph",
+                                        id="slider-france-group-graph",
                                         min=minYear,
                                         max=maxYear,
                                         value=[minYear, maxYear]
@@ -414,12 +441,12 @@ pageTwo = html.Div([
 
                                 # Zone des graphiques
                                 dbc.CardBody([
-                                    dcc.Graph(id="piechart-page-two-miscellaneous", style={"height":260, "padding":0}),
+                                    dcc.Graph(id="piechart-france-miscellaneous", style={"height":260, "padding":0}),
 
                                     html.Div(
                                         html.H1([
-                                            dbc.Badge(id="ranking-page-two-miscellaneous", className="ml-1", color="secondary"),
-                                            html.P(id="ranking-text-page-two-miscellaneous")],
+                                            dbc.Badge(id="ranking-france-miscellaneous", className="ml-1", color="secondary"),
+                                            html.P(id="ranking-text-france-miscellaneous")],
                                         style={"text-align":"center", "padding-top":260* 2/6})
                                     , style={"height":260})
                                 ]),
@@ -429,12 +456,12 @@ pageTwo = html.Div([
                                     # Label de l'annee selectionnee
                                     dbc.Label(
                                         "During the year {}".format(minYear),
-                                        id="label-page-two-miscellaneous"
+                                        id="label-france-miscellaneous"
                                     ),
 
                                     # Selection de l'annee
                                     dcc.Slider(
-                                        id="slider-page-two-miscellaneous-graph",
+                                        id="slider-france-miscellaneous-graph",
                                         min=minYear,
                                         max=maxYear,
                                         value=minYear
@@ -448,10 +475,10 @@ pageTwo = html.Div([
 
                     # Fenetre: Pied de page
                     dbc.ModalFooter(
-                        dbc.Button("Close", id="close-modal-page-two-group", color="danger", outline=True,block=True, className="ml-auto")
+                        dbc.Button("Close", id="close-modal-france-group", color="danger", outline=True,block=True, className="ml-auto")
                     ),
                 ],
-                id="modal-page-two-group",
+                id="modal-france-group",
                 size="xl"
             ),
         ],
@@ -461,11 +488,11 @@ pageTwo = html.Div([
     # Cote droit
     html.Div(
         [
-            # Graphique: Carte choropleth obesite
-            html.Div([dcc.Graph(id='graph-map-page-two')], style = {}),
+            # Graphique: Carte choropleth France
+            html.Div([dcc.Graph(id='graph-map-france')], style = {}),
 
-            # Graphique: Distribution obesite
-            html.Div([dcc.Graph(id='graph-bar-page-two')], style = {}),
+            # Graphique: Distribution France
+            html.Div([dcc.Graph(id='graph-bar-france')], style = {}),
         ],
         style = {"flex":2, "display": "flex", "flex-direction": "column"},
     ),],

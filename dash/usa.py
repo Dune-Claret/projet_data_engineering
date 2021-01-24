@@ -1,5 +1,5 @@
 """
-Module pour la page employment.
+Module pour la page usa.
 """
 
 # Imports
@@ -13,17 +13,17 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 # Imports de fichiers en local
-#from src.paths import employmentPath
-#from src.process_data import process_employment
+#from src.paths import usaPath
+#from src.process_data import process_usa
 #from src.obesity_page import generate_dropdown
 
 
 
 # Chargement des donnees
-#employment = pd.read_csv(employmentPath)
+#usa = pd.read_csv(usaPath)
 
 # Traitement des donnees
-#employment = process_employment(employment)
+#usa = process_usa(usa)
 
 # Fonctions pour la page
 def check_values_available(pCountry):
@@ -31,7 +31,7 @@ def check_values_available(pCountry):
     Verifie s'il existe des valeurs ppur les sexes M et F pour un pays.
     """
     # Creer un vecteur qui compte le nombre de valeurs different de zero
-    #vector = employment.query('country == "{}"'.format(pCountry)).sex.value_counts().values
+    #vector = usa.query('country == "{}"'.format(pCountry)).sex.value_counts().values
 
     # Retourne vrai s'il n'y a pas que des zeros
     #return np.sum(np.nonzero(vector)) != 0
@@ -68,7 +68,7 @@ def graph_line_subjects_country_range(pMinYear, pMaxYear, pCountry, pActivity, p
     Retourne un graphique lineplot des activites d'un pays dans un interval donne pour un sexe.
     """
 
-    #data = employment.query('year >= {} and year <= {} and country == "{}" and activity == "{}" and sex == "{}"'.format(pMinYear, pMaxYear, pCountry, pActivity, pSex))
+    #data = usa.query('year >= {} and year <= {} and country == "{}" and activity == "{}" and sex == "{}"'.format(pMinYear, pMaxYear, pCountry, pActivity, pSex))
 
     #lineplot = px.area(
     #    data, 
@@ -82,7 +82,7 @@ def graph_line_subjects_country_range(pMinYear, pMaxYear, pCountry, pActivity, p
     #) if data.shape[0] > 0 else go.Figure()
 
     #lineplot.update_layout(
-    #    title="Employment by sector between {} and {} in {}".format(pMinYear, pMaxYear, pCountry),
+    #    title="USA by sector between {} and {} in {}".format(pMinYear, pMaxYear, pCountry),
     #    showlegend=False,
     #    margin=dict(l=4, r=4, t=40, b=4),
     #    paper_bgcolor='rgba(48,48,48,1)',
@@ -103,7 +103,7 @@ def graph_pie_subjects_country_year(pYear, pCountry, pActivity, pSex):
     Retourne un graphique piechart des activites d'un pays pour une annee et un sexe donnes.
     """
 
-    #data = employment.query('year == {} and country == "{}" and activity == "{}" and sex == "{}"'.format(pYear, pCountry, pActivity, pSex))
+    #data = usa.query('year == {} and country == "{}" and activity == "{}" and sex == "{}"'.format(pYear, pCountry, pActivity, pSex))
 
     #pie = px.pie(
     #    data,
@@ -141,7 +141,7 @@ def graph_line_desktop_manual_country_range(pMinYear, pMaxYear, pCountry):
     """
 
     # Recupere le total d'employes dans chaque activite
-    #data = employment.query('year >= {} and year <= {} and country == "{}" and activity != "U" and sex == "{}"'.format(pMinYear, pMaxYear, pCountry, "B")).groupby(["country", "year", "activity"]).sum().reset_index(level=[0, 1]).copy()
+    #data = usa.query('year >= {} and year <= {} and country == "{}" and activity != "U" and sex == "{}"'.format(pMinYear, pMaxYear, pCountry, "B")).groupby(["country", "year", "activity"]).sum().reset_index(level=[0, 1]).copy()
     
     # Traitement sur l'index
     #data['activity'] = data.index
@@ -184,19 +184,19 @@ def graph_line_desktop_manual_country_range(pMinYear, pMaxYear, pCountry):
     return 0
 
 # Variables pour la page
-minYear = 1952 #employment.year.min()
-maxYear = 2020 #employment.year.max()
+minYear = 1952 #usa.year.min()
+maxYear = 2020 #usa.year.max()
 
 # Input pour le pays
 input_country = dbc.Select(
-    id="input-country-page-one",
-    options= ["USA", "Australie", "France"], #generate_dropdown(employment, 'country'),
+    id="input-country-usa",
+    options= ["USA", "Australie", "France"], #generate_dropdown(usa, 'country'),
     value="France"
 )
 
 # Input pour l'interval des annees
 input_range_year = dcc.RangeSlider(
-    id="input-range-year-page-one",
+    id="input-range-year-usa",
     min=minYear,
     max=maxYear,
     step=1,
@@ -205,7 +205,7 @@ input_range_year = dcc.RangeSlider(
 
 # Input pour le sex
 input_sex = dbc.RadioItems(
-    id="input-sex-page-one",
+    id="input-sex-usa",
     options=[
         {"label":"Both", "value":"B"},
         {"label":"Male", "value":"M"},
@@ -217,7 +217,7 @@ input_sex = dbc.RadioItems(
 
 # Input pour le type d'activite
 #input_activity = dbc.RadioItems(
-#    id="input-activity-page-one",
+#    id="input-activity-usa",
 #    options=[
 #        {"label":"Desktop", "value":"D"},
 #        {"label":"Manual", "value":"M"},
@@ -228,7 +228,7 @@ input_sex = dbc.RadioItems(
 
 # Input pour l'annee
 input_year = dcc.Slider(
-    id="input-year-page-one",
+    id="input-year-usa",
     min=minYear,
     max=maxYear,
     step=1,
@@ -242,28 +242,81 @@ menu = dbc.Col(
         dbc.Card(
             [
                 # Titre
-                html.H4("Menu"),
+                html.H4("Top 10"),
 
                 # Liste des options
                 html.Ul([
                     # ligne separateur
                     html.Br(),
+                    
+                    # Titre 2
+                    dbc.Button("Album1", id="button-france-album1", color="light", outline=True, className="mr-1"),
 
-                    # Input pays
-                    generate_input("Country", input_country),
-                    generate_sep(),
+                    # Separation
+                    html.Hr(style={"background-color":"white"}),
 
-                    # Input interval annees
-                    generate_input("Year range", input_range_year),
-                    generate_sep(),
+                    # Titre 3
+                    dbc.Button("Album2", id="button-france-album2", color="light", outline=True, className="mr-1"),
 
-                    # Input sex
-                    generate_input("Sex", input_sex),
-                    generate_sep()#,
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
 
-                    # Input activity
-                    #generate_input("Activity type", input_activity),
-                    #generate_sep()
+                    # Titre 4
+                    dbc.Button("Album3", id="button-france-album3", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 5
+                    dbc.Button("Album4", id="button-france-album4", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 6
+                    dbc.Button("Album5", id="button-france-album5", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 7
+                    dbc.Button("Album6", id="button-france-album6", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 8
+                    dbc.Button("Album7", id="button-france-album7", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 9
+                    dbc.Button("Album8", id="button-france-album8", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 10
+                    dbc.Button("Album9", id="button-france-album9", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 11
+                    dbc.Button("Album10", id="button-france-album10", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
                 ])
             ],
             body=True,
@@ -277,7 +330,7 @@ menu = dbc.Col(
 lineplot_subjects = dbc.Col(
     html.Div([
         dbc.Card(
-            children=[dcc.Graph(id="lineplot-subjects-page-one")],
+            children=[dcc.Graph(id="lineplot-subjects-usa")],
             body=True,
         )
     ]),
@@ -289,8 +342,8 @@ piecharts_subjects = dbc.Col(
     html.Div([
         dbc.Card(
             [
-                dbc.CardBody(dcc.Graph(id="piecharts-subjects-page-one")),
-                dbc.CardFooter([dbc.Label(id="label-year-piechart-page-one"), input_year])
+                dbc.CardBody(dcc.Graph(id="piecharts-subjects-usa")),
+                dbc.CardFooter([dbc.Label(id="label-year-piechart-usa"), input_year])
             ],
             className="mb-3",
             style={'height':660}
@@ -303,7 +356,7 @@ piecharts_subjects = dbc.Col(
 #desktop_manual_graph = dbc.Col(
 #    html.Div([
 #        dbc.Card(
-#            dcc.Graph(id="lineplot-activity-page-one"),
+#            dcc.Graph(id="lineplot-activity-usa"),
 #            body=True,
 #        )
 #    ]),
@@ -311,7 +364,7 @@ piecharts_subjects = dbc.Col(
 #)
 
 # Page pour l'emploi
-pageOne = html.Div([
+pageUsa = html.Div([
     # Premiere ligne (menu, barchart subjects)
     dbc.Row([
         menu,

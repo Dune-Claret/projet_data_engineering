@@ -1,5 +1,5 @@
 """
-Module pour la page analytics.
+Module pour la page uk.
 """
 
 # Import
@@ -13,12 +13,12 @@ import plotly.graph_objects as go
 import scipy.stats as sc
 
 # Import local
-#from page2 import generate_dropdown
+#from france import generate_dropdown
 #from src.paths import employmentPath, obesityPath
 #from src.process_data import process_employment, process_obesity
 
 # Chargement des donnees
-#analytics = pd.merge(
+#uk = pd.merge(
 #    process_obesity(pd.read_csv(obesityPath, index_col=0)),
 #    process_employment(pd.read_csv(employmentPath)),
 #    on=['country', 'year', 'sex', 'continent', 'country_code']
@@ -31,13 +31,13 @@ correlations = {
     "Kendall":sc.kendalltau
 }
 
-def correlation_page_two_page_one_analytics(country, activity, corr_type="Pearson"):
+def correlation_france_usa_uk(country, activity, corr_type="Pearson"):
     """
     Retourne la correlation entre ... pour une annee donnee.
     """
 
     # Filtrage + nettoyage
-    #df = analytics.query("activity != 'U' and sex == 'B'").copy()
+    #df = uk.query("activity != 'U' and sex == 'B'").copy()
     #df = df.drop(["country_code", "min_obesity", "max_obesity", "sex", "continent"], axis=1)
 
     # Recuperation des chiffres de l'emploi par activite
@@ -55,7 +55,7 @@ def correlation_page_two_page_one_analytics(country, activity, corr_type="Pearso
     #return correlation[0]
     return 0
 
-def graph_page_two_page_one_analytics(country, activity, corr_type="Pearson"):
+def graph_france_usa_uk(country, activity, corr_type="Pearson"):
     """
     Retourne un graphique avec:
     - en abscisse: l'obesite
@@ -64,7 +64,7 @@ def graph_page_two_page_one_analytics(country, activity, corr_type="Pearson"):
     """
 
     # Filtrage + nettoyage
-    #df = analytics.query('activity == "{}" and sex == "B" and country == "{}"'.format(activity, country)).copy()
+    #df = uk.query('activity == "{}" and sex == "B" and country == "{}"'.format(activity, country)).copy()
     #df = df.drop(["country_code", "min_obesity", "max_obesity", "sex", "continent", "country"], axis=1)
 
     # Recuperation des chiffres de l'emploi par activite
@@ -96,7 +96,7 @@ def graph_page_two_page_one_analytics(country, activity, corr_type="Pearson"):
 
     #blue = "#3e5a7c"
     #red = "#d75745"
-    #color = blue if correlation_page_two_page_one_analytics(country, activity, corr_type) >= 0.0 else red
+    #color = blue if correlation_france_usa_uk(country, activity, corr_type) >= 0.0 else red
 
     #lineplot.update_traces(
     #    marker=dict(
@@ -112,7 +112,7 @@ def graph_page_two_page_one_analytics(country, activity, corr_type="Pearson"):
     #return lineplot
     return 0
 
-def correlation_alert_component_analytics(country, activity, corr, corr_type="Pearson"):
+def correlation_alert_component_uk(country, activity, corr, corr_type="Pearson"):
     """
     Retourne composant de l'interface utilisateur indiquant la correlation
     entre les emplois bureautiques et manuels par rapport a l'obesite pour
@@ -143,12 +143,12 @@ def create_table_correlation_country_activity(corr_type="Pearson"):
       - M: La correlation entre les emplois manuels et l'obesite
     """
 
-    #analytics_copy = analytics.query("activity != 'U' and sex == 'B'").copy()
-    #analytics_copy = analytics_copy.drop(columns=["sex", "country_code", "continent", "min_obesity", "max_obesity"])
-    #analytics_copy['value_mean'] = analytics_copy.groupby(["country", "year", "activity"]).value.transform('mean')
-    #analytics_copy = analytics_copy.drop(["subject", "value"], axis=1).drop_duplicates()
+    #uk_copy = uk.query("activity != 'U' and sex == 'B'").copy()
+    #uk_copy = uk_copy.drop(columns=["sex", "country_code", "continent", "min_obesity", "max_obesity"])
+    #uk_copy['value_mean'] = uk_copy.groupby(["country", "year", "activity"]).value.transform('mean')
+    #uk_copy = uk_copy.drop(["subject", "value"], axis=1).drop_duplicates()
 
-    #df_corr = analytics_copy.groupby(["country", "activity"])[["obesity","value_mean"]].corr(method=corr_type.lower())
+    #df_corr = uk_copy.groupby(["country", "activity"])[["obesity","value_mean"]].corr(method=corr_type.lower())
     #df_corr = df_corr.reset_index(level=[0,1])
 
     #df_corr = df_corr.loc['obesity',:]
@@ -158,7 +158,7 @@ def create_table_correlation_country_activity(corr_type="Pearson"):
     #return df_corr
     return 0
 
-def heatmap_page_two_page_one_analytics(corr_type="Pearson"):
+def heatmap_france_usa_uk(corr_type="Pearson"):
     """
     Retourne une carte de chaleur selon les correlation entre
     obesite et les emplois bureautiques et manuels.
@@ -191,13 +191,13 @@ def heatmap_page_two_page_one_analytics(corr_type="Pearson"):
     return 0
 
 # Variables pour la page
-dropdown_countries = ["USA", "France", "Australie"] #generate_dropdown(analytics.query("country != 'Brazil'"), "country")
+dropdown_countries = ["USA", "France", "Australie"] #generate_dropdown(uk.query("country != 'Brazil'"), "country")
 lineplot_graph = dbc.Row([
     dbc.Col(
         # Corelation bureautique-obesite
         html.Div([
-            html.Div(id="alert-correlationD-analytics"),
-                dcc.Graph(id="graph-lineplot-correlationD-analytics")
+            html.Div(id="alert-correlationD-uk"),
+                dcc.Graph(id="graph-lineplot-correlationD-uk")
         ]),
         width=6
     ),
@@ -205,8 +205,8 @@ lineplot_graph = dbc.Row([
     dbc.Col(
         # Correlation manuel-obesite
         html.Div([
-            html.Div(id="alert-correlationM-analytics"),
-            dcc.Graph(id="graph-lineplot-correlationM-analytics")
+            html.Div(id="alert-correlationM-uk"),
+            dcc.Graph(id="graph-lineplot-correlationM-uk")
         ]),
         width=6
     )
@@ -217,7 +217,7 @@ country_selection = [
 
     # Dropdown pour la selection de pays
     dcc.Dropdown(
-        id="dropdown-country-analytics",
+        id="dropdown-country-uk",
         clearable=False,
         options=dropdown_countries,
         value="France",
@@ -225,7 +225,7 @@ country_selection = [
         )
 ]
 radio_graph_type = dbc.RadioItems(
-    id="radio-graph-type-analytics",
+    id="radio-graph-type-uk",
     options=[
         {'label':"Lineplot", 'value':"lineplot"},
         {'label':"Heatmap", 'value':"heatmap"}
@@ -233,7 +233,7 @@ radio_graph_type = dbc.RadioItems(
     value="heatmap"
 )
 radio_corr_type = dbc.RadioItems(
-    id="radio-corr-type-analytics",
+    id="radio-corr-type-uk",
     options=[
         {'label':"Pearson", 'value':"Pearson"},
         {'label':"Spearman", 'value':"Spearman"},
@@ -244,49 +244,92 @@ radio_corr_type = dbc.RadioItems(
 )
 
 # Page pour l'analyse des possibles correlations entre jeu de donnees
-pageAnalytics = html.Div([
+pageUk = html.Div([
     # Menu
     html.Div([
         # Titre
-        html.H4("Menu"),
+        html.H4("Top 10"),
 
         # Liste des options
         html.Ul([
             html.Hr(style={"background-color":"white"}),
             
-            # Type de visualisation
-            html.Div([
-                # Titre type de visualisation
-                html.Li([
-                    html.H6("Correlation visualization type:")
-                ]),
+            # Cote gauche
+            html.Div(
+                [
+                    # Titre 2
+                    dbc.Button("Album1", id="button-france-album1", color="light", outline=True, className="mr-1"),
 
-                # Radio pour la selection de type de visu
-                radio_graph_type,
-            ]),
+                    # Separation
+                    html.Hr(style={"background-color":"white"}),
 
-            # Saud de ligne
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                    # Titre 3
+                    dbc.Button("Album2", id="button-france-album2", color="light", outline=True, className="mr-1"),
 
-            html.Div([
-                # Titre
-                html.Li([html.H6("Correlation type:")]),
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
 
-                # Radio pour la selection du type de correlation
-                radio_corr_type
-            ]),
+                    # Titre 4
+                    dbc.Button("Album3", id="button-france-album3", color="light", outline=True, className="mr-1"),
 
-            # Saut de ligne
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
 
-            # Pays a selectionne
-            html.Div(id="ui-dropdown-country-analytics")
-       ])
-    ], style = {"flex":1, "padding":"20px"}),
+                    # Titre 5
+                    dbc.Button("Album4", id="button-france-album4", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 6
+                    dbc.Button("Album5", id="button-france-album5", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 7
+                    dbc.Button("Album6", id="button-france-album6", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 8
+                    dbc.Button("Album7", id="button-france-album7", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 9
+                    dbc.Button("Album8", id="button-france-album8", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 10
+                    dbc.Button("Album9", id="button-france-album9", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"}),
+
+                    # Titre 11
+                    dbc.Button("Album10", id="button-france-album10", color="light", outline=True, className="mr-1"),
+
+                    # Separation
+                    html.Br(),
+                    html.Hr(style={"background-color":"white"})
+                ])
+            ])
+        ]),
 
     # Affichage des graphiques
-    html.Div(id="graphs-analytics", style = {"flex":3, "padding":"20px"})
+    html.Div(id="graphs-uk", style = {"flex":3, "padding":"20px"})
 ], style = {"display":"flex", " padding":"0px", "margin":"0px"})
 

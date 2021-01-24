@@ -13,13 +13,13 @@ colors = {
 # Barre de navigation
 navigationBar = dbc.NavbarSimple(
     brand= "Dashboard",
-    brand_href="page2",
+    brand_href="france",
     color=colors['theme'],
     dark=True,
     sticky="top",
     children=[
-        dbc.NavItem(dbc.NavLink("Page2", href="page2")),
-        dbc.NavItem(dbc.NavLink("Page1", href="page1")),
-        dbc.NavItem(dbc.NavLink("Analytics", href="analytics")),
+        dbc.NavItem(dbc.NavLink("France", href="france")),
+        dbc.NavItem(dbc.NavLink("USA", href="usa")),
+        dbc.NavItem(dbc.NavLink("UK", href="uk")),
     ]
 )
