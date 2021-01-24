@@ -6,6 +6,8 @@ import dash_html_components as html
 import pandas as pd
 import plotly.express as px
 from dash.dependencies import Input, Output
+import pymongo
+from pymongo import MongoClient
 
 # Imports de fichiers en local
 from uk import pageUk

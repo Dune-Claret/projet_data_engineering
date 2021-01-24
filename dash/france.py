@@ -12,12 +12,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
 import plotly.graph_objects as go
-
-# Import local
 from requests_mongo import get_graphes
 
-# Variables pour la page
-f1, f2, f3 = get_graphes('France')
+# Variable pour la page
+country = 'France'
+f1, f2, f3 = get_graphes(country)
 
 def generate_dropdown(dataframe, feature):
     dropdown = list()
@@ -197,13 +196,13 @@ pageFrance = html.Div([
     html.Div(
         [
             # Graphique 1
-            html.Div([dcc.Graph(id='f1')], style = {}),
+            html.Div([dcc.Graph(figure = f1)], style = {}),
 
             # Graphique 2
-            html.Div([dcc.Graph(id='f2')], style = {}),
+            html.Div([dcc.Graph(figure = f2)], style = {}),
 
             # Graphique 3
-            html.Div([dcc.Graph(id='f3')], style = {}),
+            html.Div([dcc.Graph(figure = f3)], style = {}),
         ],
         style = {"flex":2, "display": "flex", "flex-direction": "column"},
     ),],
