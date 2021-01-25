@@ -28,7 +28,7 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.baby_yoda
 collection = db['top_albums']
-collection.delete_many({})
+#collection.delete_many({})
 
 
 #start all spiders
