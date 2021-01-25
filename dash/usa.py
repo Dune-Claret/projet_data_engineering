@@ -99,22 +99,22 @@ pageUsa = html.Div([
             html.Hr(style={"background-color":"white"}),  
 
             # Fenetre pour region specifiee
-            dbc.Modal(
-                [
+            #dbc.Modal(
+                #[
                     # Fenetre: Titre
-                    dbc.ModalHeader(id="header-france-group"),
+                    #dbc.ModalHeader(id="header-france-group"),
 
                     # Fenetre: Corps
-                    dbc.ModalBody([
+                    #dbc.ModalBody([
 
                         # Gauche: Graphique France homme/femme
-                        html.Div([
-                            dbc.Card([
-                                dbc.CardBody([
-                                    dcc.Graph(id="lineplot-france-graph", style={"height":520})
-                                ]),
+                        #html.Div([
+                            #dbc.Card([
+                                #dbc.CardBody([
+                                #    dcc.Graph(id="lineplot-france-graph", style={"height":520})
+                                #]),
 
-                                dbc.CardFooter([
+                                #dbc.CardFooter([
                                     # Label des annees du slider
                                     #dbc.Label(
                                     #    "From {} to {}:".format(minYear, maxYear),
@@ -128,28 +128,28 @@ pageUsa = html.Div([
                                     #    max=maxYear,
                                     #    value=[minYear, maxYear]
                                     #)
-                                ])
-                            ], outline=True, color="dark")
-                        ], style={"flex":3, "padding-right":5}),
+                                #])
+                            #], outline=True, color="dark")
+                        #], style={"flex":3, "padding-right":5}),
 
                         # Droite: Graphiques divers
-                        html.Div([
-                            dbc.Card([
+                        #html.Div([
+                            #dbc.Card([
 
                                 # Zone des graphiques
-                                dbc.CardBody([
-                                    dcc.Graph(id="piechart-france-miscellaneous", style={"height":260, "padding":0}),
+                                #dbc.CardBody([
+                                    #dcc.Graph(id="piechart-france-miscellaneous", style={"height":260, "padding":0}),
 
-                                    html.Div(
-                                        html.H1([
-                                            dbc.Badge(id="ranking-france-miscellaneous", className="ml-1", color="secondary"),
-                                            html.P(id="ranking-text-france-miscellaneous")],
-                                        style={"text-align":"center", "padding-top":260* 2/6})
-                                    , style={"height":260})
-                                ]),
+                                    #html.Div(
+                                    #    html.H1([
+                                    #        dbc.Badge(id="ranking-france-miscellaneous", className="ml-1", color="secondary"),
+                                    #        html.P(id="ranking-text-france-miscellaneous")],
+                                    #    style={"text-align":"center", "padding-top":260* 2/6})
+                                    #, style={"height":260})
+                                #]),
 
                                 # Pied de page des graphiques
-                                dbc.CardFooter([
+                                #dbc.CardFooter([
                                     # Label de l'annee selectionnee
                                     #dbc.Label(
                                     #    "During the year {}".format(minYear),
@@ -163,21 +163,21 @@ pageUsa = html.Div([
                                     #    max=maxYear,
                                     #    value=minYear
                                     #)
-                                ]),
-                            ], color="dark", outline=True),
+                                #]),
+                            #], color="dark", outline=True),
 
-                        ], style={"flex":2, "padding-left":5})
+                        #], style={"flex":2, "padding-left":5})
 
-                    ], style = {"display":"flex"}),
+                    #], style = {"display":"flex"}),
 
                     # Fenetre: Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-modal-france-group", color="danger", outline=True,block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-france-group",
-                size="xl"
-            ),
+                    #dbc.ModalFooter(
+                    #    dbc.Button("Close", id="close-modal-france-group", color="danger", outline=True,block=True, className="ml-auto")
+                    #),
+                #],
+                #id="modal-france-group",
+                #size="xl"
+            #),
         ],
         style = {"flex":1, "padding":"20px"},
     ),
