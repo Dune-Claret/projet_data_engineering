@@ -17,8 +17,34 @@ from requests_mongo import get_graphes
 country = 'UK'
 f1, f2, f3 = get_graphes(country)
 
-pageUk = html.Div([
+tabs_styles = {
+    'height': '44px'
+}
+tab_style = {
+    'borderBottom': '1px solid #d6d6d6',
+    'padding': '6px',
+    'fontWeight': 'bold'
+}
 
+tab_selected_style = {
+    'borderTop': '1px solid #d6d6d6',
+    'borderBottom': '1px solid #d6d6d6',
+    'color': 'black',
+    'padding': '6px'
+}
+
+pageUk = html.Div([
+    # Construction des onglets principaux
+    dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
+        # Premier onglet "Top 10 best-selling albums"
+        dcc.Tab(label='Top 10 best-selling albums', value='tab-1', style=tab_style, selected_style=tab_selected_style),
+        # Second onglet "Graphs and statistics"
+        dcc.Tab(label='Graphs and statistics', value='tab-2', style=tab_style, selected_style=tab_selected_style),
+    ], style=tabs_styles),
+    html.Div(id='tabs-content-inline')
+])
+
+tab_1 = html.Div([
     # Cote gauche
     html.Div(
         [
@@ -98,86 +124,86 @@ pageUk = html.Div([
             html.Br(),
             html.Hr(style={"background-color":"white"}),  
 
-            # Fenetre pour region specifiee
-            #dbc.Modal(
-                #[
-                    # Fenetre: Titre
-                    #dbc.ModalHeader(id="header-france-group"),
+                    # Fenetre pour region specifiee
+                    #dbc.Modal(
+                        #[
+                            # Fenetre: Titre
+                            #dbc.ModalHeader(id="header-france-group"),
 
-                    # Fenetre: Corps
-                    #dbc.ModalBody([
+                            # Fenetre: Corps
+                            #dbc.ModalBody([
 
-                        # Gauche: Graphique France homme/femme
-                        #html.Div([
-                            #dbc.Card([
-                                #dbc.CardBody([
-                                #    dcc.Graph(id="lineplot-france-graph", style={"height":520})
-                                #]),
+                                # Gauche: Graphique France homme/femme
+                                #html.Div([
+                                    #dbc.Card([
+                                        #dbc.CardBody([
+                                        #    dcc.Graph(id="lineplot-france-graph", style={"height":520})
+                                        #]),
 
-                                #dbc.CardFooter([
-                                    # Label des annees du slider
-                                    #dbc.Label(
-                                    #    "From {} to {}:".format(minYear, maxYear),
-                                    #    id="label-france-group-graph",
-                                    #),
+                                        #dbc.CardFooter([
+                                            # Label des annees du slider
+                                            #dbc.Label(
+                                            #    "From {} to {}:".format(minYear, maxYear),
+                                            #    id="label-france-group-graph",
+                                            #),
 
-                                    # Selection de l'interval
-                                    #dcc.RangeSlider(
-                                    #    id="slider-france-group-graph",
-                                    #    min=minYear,
-                                    #    max=maxYear,
-                                    #    value=[minYear, maxYear]
-                                    #)
-                                #])
-                            #], outline=True, color="dark")
-                        #], style={"flex":3, "padding-right":5}),
+                                            # Selection de l'interval
+                                            #dcc.RangeSlider(
+                                            #    id="slider-france-group-graph",
+                                            #    min=minYear,
+                                            #    max=maxYear,
+                                            #    value=[minYear, maxYear]
+                                            #)
+                                        #])
+                                    #], outline=True, color="dark")
+                                #], style={"flex":3, "padding-right":5}),
 
-                        # Droite: Graphiques divers
-                        #html.Div([
-                            #dbc.Card([
+                                # Droite: Graphiques divers
+                                #html.Div([
+                                    #dbc.Card([
 
-                                # Zone des graphiques
-                                #dbc.CardBody([
-                                    #dcc.Graph(id="piechart-france-miscellaneous", style={"height":260, "padding":0}),
+                                        # Zone des graphiques
+                                        #dbc.CardBody([
+                                            #dcc.Graph(id="piechart-france-miscellaneous", style={"height":260, "padding":0}),
 
-                                    #html.Div(
-                                    #    html.H1([
-                                    #        dbc.Badge(id="ranking-france-miscellaneous", className="ml-1", color="secondary"),
-                                    #        html.P(id="ranking-text-france-miscellaneous")],
-                                    #    style={"text-align":"center", "padding-top":260* 2/6})
-                                    #, style={"height":260})
-                                #]),
+                                            #html.Div(
+                                            #    html.H1([
+                                            #        dbc.Badge(id="ranking-france-miscellaneous", className="ml-1", color="secondary"),
+                                            #        html.P(id="ranking-text-france-miscellaneous")],
+                                            #    style={"text-align":"center", "padding-top":260* 2/6})
+                                            #, style={"height":260})
+                                        #]),
 
-                                # Pied de page des graphiques
-                                #dbc.CardFooter([
-                                    # Label de l'annee selectionnee
-                                    #dbc.Label(
-                                    #    "During the year {}".format(minYear),
-                                    #    id="label-france-miscellaneous"
-                                    #),
+                                        # Pied de page des graphiques
+                                        #dbc.CardFooter([
+                                            # Label de l'annee selectionnee
+                                            #dbc.Label(
+                                            #    "During the year {}".format(minYear),
+                                            #    id="label-france-miscellaneous"
+                                            #),
 
-                                    # Selection de l'annee
-                                    #dcc.Slider(
-                                    #    id="slider-france-miscellaneous-graph",
-                                    #    min=minYear,
-                                    #    max=maxYear,
-                                    #    value=minYear
-                                    #)
-                                #]),
-                            #], color="dark", outline=True),
+                                            # Selection de l'annee
+                                            #dcc.Slider(
+                                            #    id="slider-france-miscellaneous-graph",
+                                            #    min=minYear,
+                                            #    max=maxYear,
+                                            #    value=minYear
+                                            #)
+                                        #]),
+                                    #], color="dark", outline=True),
 
-                        #], style={"flex":2, "padding-left":5})
+                                #], style={"flex":2, "padding-left":5})
 
-                    #], style = {"display":"flex"}),
+                            #], style = {"display":"flex"}),
 
-                    # Fenetre: Pied de page
-                    #dbc.ModalFooter(
-                    #    dbc.Button("Close", id="close-modal-france-group", color="danger", outline=True,block=True, className="ml-auto")
+                            # Fenetre: Pied de page
+                            #dbc.ModalFooter(
+                            #    dbc.Button("Close", id="close-modal-france-group", color="danger", outline=True,block=True, className="ml-auto")
+                            #),
+                        #],
+                        #id="modal-france-group",
+                        #size="xl"
                     #),
-                #],
-                #id="modal-france-group",
-                #size="xl"
-            #),
         ],
         style = {"flex":1, "padding":"20px"},
     ),
@@ -185,16 +211,21 @@ pageUk = html.Div([
     # Cote droit
     html.Div(
         [
-            # Graphique 1
-            html.Div([dcc.Graph(figure = f1)], style = {}),
-
-            # Graphique 2
-            html.Div([dcc.Graph(figure = f2)], style = {}),
-
-            # Graphique 3
+            # Graphique
             html.Div([dcc.Graph(figure = f3)], style = {}),
         ],
         style = {"flex":2, "display": "flex", "flex-direction": "column"},
     ),],
     style = {"display":"flex", " padding":"0px", "margin":"0px"}
+)
+
+tab_2 = html.Div(
+    [
+        # Graphique 1
+        html.Div([dcc.Graph(figure = f1)], style = {}),
+
+        # Graphique 2
+        html.Div([dcc.Graph(figure = f2)], style = {}),
+    ],
+    style = {"flex":2, "display": "flex", "flex-direction": "column", "padding":"0px", "margin":"0px"},
 )

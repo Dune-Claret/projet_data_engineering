@@ -10,10 +10,10 @@ import pymongo
 from pymongo import MongoClient
 
 # Imports de fichiers en local
-from uk import pageUk
-from usa import pageUsa
+from uk import (pageUk, tab_1, tab_2)
+from usa import (pageUsa, tab_1, tab_2)
 from navigation_bar import navigationBar
-from france import pageFrance
+from france import (pageFrance, tab_1, tab_2)
 
 # Application: Dashboard
 if __name__ == '__main__':
@@ -69,6 +69,17 @@ if __name__ == '__main__':
     )
     def reset_button_submit(n_clicks_close):
         return None
+
+    # Interactivité : Construction des onglets principaux
+    @app.callback(
+        Output('tabs-content-inline', 'children'), 
+        Input('tabs-styled-with-inline', 'value')
+    )
+    def render_content(tab):
+        if tab == 'tab-1':
+            return tab_1
+        elif tab == 'tab-2':
+            return tab_2
 
     # Titre de l'application
     app.title = "World's top albums"
