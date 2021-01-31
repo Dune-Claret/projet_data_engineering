@@ -1,2 +1,527 @@
-# projet_data_engineering
-Discogs
+# Introduction
+
+Dans le cadre du module "*Data engineering*" (**DSIA-4201C**), nous avons eu l'opportunité de réutiliser les notions de langage Python abordées dans le cours pour produire un Dashboard sur des sites que nous avons choisi. Le travail a été réalisé en trinôme.
+
+Nos responsables sont Monsieur **Raphaël COURIVAUD** et Monsieur **Jean-Baptiste KOUEK**, et notre trinôme est composé de Mademoiselle **Andrianihary RAZAFINDRAMISA**, de Mademoiselle **Dune CLARET** et de Mademoiselle **Xianli LI**.
+  
+Nous avons choisi de travailler sur les sites suivants :
+- *[Le Syndicat national de l’édition phonographique (SNEP)](https://www.snepmusique.com)*
+- *[The 50 best-selling albums of all time](https://www.businessinsider.com/50-best-selling-albums-all-time-2016-9?IR=T#1-eagles-their-greatest-hits-1971-1975-50)*
+- *[Gold & Platinum - RIAA](https://www.riaa.com/gold-platinum/?tab_active=awards_by_album#search_section)*
+
+#### Problématique
+Nous voulions suivre l'évolution des albums les plus vendus dans le monde et voir si une tendance se dessinait. Nous avons donc choisi de répondre à la problématique : <ins>*Y a-t-il une tendance dans l'évolution des albums les plus vendus dans le monde ?*</ins>
+
+<br>
+
+___
+
+# Table des matières
+
+[[_TOC_]]
+___
+
+
+# I. Guide utilisateur
+
+## 1. Installation & Téléchargement
+
+### A. Python
+Dans un premier temps, afin d'exploiter notre projet, il est nécessaire de télécharger et installer le langage de base ***Python v3.X.X*** sur votre appareil. Pour cela, que votre appareil soit sous Linux, macOS, Windows ou autre, vous pouvez trouver la page de téléchargement de Python en cliquant [ici](https://www.python.org/downloads/), puis suivre les instructions d'installation.
+
+Après l'installation, vérifiez le fonctionnement sur votre appareil en tapant les commandes suivantes sur le terminal, l'nvite de commandes, le PowerShell ou autre selon votre système d'exploitation:
+
+```bash
+$ python3 --version
+Python 3.X.X
+```
+
+ou
+
+```bash
+$ python --version
+Python 3.X.X
+```
+
+Dans le cas où vous n'avez pas ***Python v3.X.X*** en résultat, il faut réinstaller Python.
+
+### B. *pip*
+
+Dans un second temps, des packages supplémentaires sont nécessaires au bon fonctionnement de notre projet. Il faudra alors installer *pip* (si la version de Python est plus ancienne que **Python 2.7.9** ou **Python 3.4**) grâce à ce [lien](https://pip.pypa.io/en/stable/installing/).
+
+### C. Le dashboard
+
+#### Télécharger le projet
+
+Le projet se trouve sur un dépôt Git se situant sur [cette page](https://github.com/Xianlilxl/projet_data_engineering). Ce dépôt pourra être "*cloné*" dans un répertoire de travail que vous avez déjà créé sur votre ordinateur.
+
+#### Packages nécessaires
+
+Des packages supplémentaires sont nécessaires au bon fonctionnement de notre projet. Le nom de ces packages sont disponibles dans le fichier *requirements.txt* :
+
+```bash
+re
+scrapy
+dash
+dash_bootstrap_components
+dash_core_components
+dash_html_components
+pandas
+plotly
+scipy
+pymongo
+itemadapter
+logging
+selenium
+```
+
+On peut utiliser les commandes suivantes pour les télécharger et les installer :
+
+```bash
+pip install -r requirements.txt
+```
+
+```bash
+pip3 install -r requirements.txt
+```
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+## 2. Exécution
+
+### A. Windows
+
+Lancez un invité de commande/cmd/powershell puis placez-vous dans le dossier du projet:
+
+- Sous CMD
+```shell
+> CD [Le chemin menant au dossier]
+> DIR
+...
+```
+
+- Sous powershell
+```shell
+> cd [Le chemin menant au dossier]
+> ls
+README.md     main.py     ...
+```
+
+On peut utiliser les commandes suivantes pour lancer l'application :
+```bash
+$ python3 main.py
+$ python3 dash/main.py
+```
+ou
+```bash
+$ python main.py
+$ python dash/main.py
+```
+
+### B. Linux & macOS
+Lancez un terminal/invité de commandes/console au niveau du projet:
+```bash
+$ cd [Le chemin menant au dossier]
+$ ls
+README.md     main.py     ...
+```
+
+On peut utiliser les commandes suivantes pour lancer l'application :
+```bash
+$ python3 main.py
+$ python3 dash/main.py
+```
+Ou
+```bash
+$ python main.py
+$ python dash/main.py
+```
+
+Une fois exécuté, vous devriez voir cet affichage :
+```bash
+$ python3 main.py
+Dash is running on http://127.0.0.1:8050/
+
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:8050/ (Press CTRL+C to quit)
+```
+
+## 3. Utilisation
+
+Une fois éxécuté, le "*dashboard*" est accessible à l'adresse [http://127.0.0.1:8050/](http://127.0.0.1:8050/).
+
+### A. Bar de navigation
+
+Lorsque l'installation et l'éxecution ont bien été respéctées, on se retrouve sur la page suivante:  
+
+![menu.PNG](images/menu.PNG)
+
+Il y a trois pages :
+- *France*,
+- *USA*,
+- et *UK*.
+Ces pages sont accessibles en cliquant sur leur label, en haut à droite de la page.
+
+### B. *France*
+
+Une fois l'installation et l'exécution réussies, l'application s'ouvre sur la page suivante:
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+#### Top 10 best-selling albums
+
+- ##### Partie principale : Top 10
+
+![dde_1.PNG](images/dde_1.PNG)
+
+La partie gauche de la page présente les boutons correspondant aux dix albums les plus vendus en France. Ces boutons ouvrent sur une page secondaire contenant les informations de l'album correspondant.  
+
+- ##### Page secondaire : Information sur l'album choisi
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations sur un album spécifique :
+- Le titre,
+- L'artiste,
+- L'année de parution,
+- Le genre,
+- Le nombre de ventes,
+- Et le prix de l'album en CD sur Amazon.
+Cela permet d'avoir accès à la fiche d'identité de l'album.
+
+#### Graphs and statistics
+
+- ##### Premier graphique
+
+![dde_1.PNG](images/dde_1.PNG)
+
+La partie supérieure de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix.  
+
+- ##### Second graphique
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+La partie inférieure de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
+
+### C. *USA*
+
+![pageparan.PNG](images/pageparan.PNG)
+
+#### Top 10 best-selling albums
+
+- ##### Partie principale : Top 10
+
+![dde_1.PNG](images/dde_1.PNG)
+
+La partie gauche de la page présente les boutons correspondant aux dix albums les plus vendus en France. Ces boutons ouvrent sur une page secondaire contenant les informations de l'album correspondant.  
+
+- ##### Page secondaire : Information sur l'album choisi
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations sur un album spécifique :
+- Le titre,
+- L'artiste,
+- L'année de parution,
+- Le genre,
+- Le nombre de ventes,
+- Et le prix de l'album en CD sur Amazon.
+Cela permet d'avoir accès à la fiche d'identité de l'album.
+
+#### Graphs and statistics
+
+- ##### Premier graphique
+
+![dde_1.PNG](images/dde_1.PNG)
+
+La partie supérieure de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix.  
+
+- ##### Second graphique
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+La partie inférieure de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
+
+### D. *UK*
+
+![pagedomaine.PNG](images/pagedomaine.PNG)
+
+#### Top 10 best-selling albums
+
+- ##### Partie principale : Top 10
+
+![dde_1.PNG](images/dde_1.PNG)
+
+La partie gauche de la page présente les boutons correspondant aux dix albums les plus vendus en France. Ces boutons ouvrent sur une page secondaire contenant les informations de l'album correspondant.  
+
+- ##### Page secondaire : Information sur l'album choisi
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations sur un album spécifique :
+- Le titre,
+- L'artiste,
+- L'année de parution,
+- Le genre,
+- Le nombre de ventes,
+- Et le prix de l'album en CD sur Amazon.
+Cela permet d'avoir accès à la fiche d'identité de l'album.
+
+#### Graphs and statistics
+
+- ##### Premier graphique
+
+![dde_1.PNG](images/dde_1.PNG)
+
+La partie supérieure de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix.  
+
+- ##### Second graphique
+
+![pageechanti.PNG](images/pageechanti.PNG)
+
+La partie inférieure de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
+
+# II. Guide développeur
+
+Dans ce Developper Guide, la structure, le code et le rôle des fichiers dans le projet seront expliqués.
+
+## 1. Les répertoires & fichiers
+
+Dans cette partie, on explique le rôle du répertoire et des fichiers.
+
+### A. *images*
+
+Ce répertoire contient les images servant principalement à la rédaction de ce guide.
+
+### B. *baby_yoda*
+
+Ce répertoire contient les fichiers permettant de faire les recherches et la récupération des données sur Internet.
+
+### C. *dash*
+
+Ce répertoire contient les fichiers permettant de créer l'interface graphique et d'implémenter le traitement dynamique des données en créant une interactivité entre les différents composants de l'application.
+
+### D. *chromedriver.exe*
+
+Ce fichier permet de créer le webdriver qui est en charge d'effectuer les recherches sur Chrome.
+
+### E. *main.py*
+
+Ce fichier contient le code permettant le traitement des données afin que l'on puisse les utiliser et les lire clairement. 
+
+### F. *README.md*
+
+Le présent fichier *Markdown* contient:
+- la présentation du projet avec la problématique,
+- le guide de l'utilisateur avec les instructions d'exécution,
+- et le guide du développeur.
+
+### G. *requirements.txt*
+
+
+Ce fichier texte contient les noms des différents packages nécessaires à l'utilisation du projet. 
+  
+Afin de le générer à nouveau si le projet a subi des modifications, il faudra utiliser une des commandes suivantes:
+
+```shell
+pip3 freeze > requirements.txt
+```
+
+```shell
+pip freeze > requirements.txt
+```
+
+```shell
+python -m pip freeze > requirements.txt
+```
+
+```shell
+python3 -m pip freeze > requirements.txt
+```
+
+## 2. Le code
+
+#### - Le chargement des données : baby_yoda
+
+Dans cette section, on récupère les jeux de données nécessaires au fonctionnement de l'application. Par exemple:
+
+```python
+# Lecture des fichiers de source
+diplome_dut = pd.read_csv("fr-esr-insertion_professionnelle-dut_donnees_nationales.csv", sep=';',na_values=["ns", "nd"])
+diplome_lp = pd.read_csv("fr-esr-insertion_professionnelle-lp.csv", sep=';', na_values=["ns", "nd"])
+diplome_master = pd.read_csv("fr-esr-insertion_professionnelle-master.csv", sep=';', na_values=["ns", "nd"])
+
+...
+```
+
+#### - La création de l'interface de l'application : dash
+
+Dans cette section, on crée l'interface de l'application en définissant le contenu du menu et du corps de l'application. 
+
+##### - Les scripts python
+
+Les scripts python sont structurés de la manière suivante:
+
+```python
+"""
+Module pour [rôle du script].
+"""
+
+# Import
+...
+
+# Les fonctions
+...
+
+# Les variables 
+...
+```
+
+###### - Les *import*
+
+Dans cette section du script, on charge les packages nécessaires pour remplir la fonction du script. Dans ces scripts on a deux types d'*import*:
+
+- Les *import* de packages:
+
+Dans ce cas on charge les modules de bases (*ex: pandas, numpy ou encore scipy*) comme dans l'exemple suivant:
+```python
+...
+# Imports
+import dash
+import dash_bootstrap_components as dbc
+import dash_core_components as dcc
+import dash_html_components as html
+import pandas as pd
+...
+```
+> exemple: *main.py* 
+
+Ici le mot clé *as* permet d'utiliser un alias pour les packages.
+
+- Les *import* de modules locaux
+
+Dans ce cas on charge les modules locaux, c'est-à-dire les autres scripts au sein du projet. Par exemple dans le script *main.py*:
+```python
+# Import local
+from requests_mongo import get_graphes
+```
+> exemple: *france.py* 
+
+Ici on charge une fonction *get_graphes* provenant du script *requests_mongo*, mais il est également possible de charger des variables provenant des scripts *france.py*, *uk.py* et *usa.py*.
+
+###### - Les fonctions
+
+Dans cette section du script, on a la définition de toutes les fonctions. Par exemple:
+
+```python
+# Interactivite : Ouverture d'une fenêtre
+    def toggle_modal(n1, n2, is_open):
+        if n1 or n2:
+            return not is_open
+        return is_open
+```
+> exemple: *main.py*
+
+###### - Les variables
+
+Dans cette section du script, on a la définition de toutes les variables. Par exemple:
+
+```python
+# Variables pour la page
+country = 'France'
+f1, f2, f3 = get_graphes(country)
+```
+> exemple: *france.py*
+
+Ici par exemple la variable *country* est utilisé pour définir le pays correspondant à la page.
+
+##### - La barre de navigation : navigation_bar
+
+```bash
+# Imports
+import dash
+import dash_bootstrap_components as dbc
+import dash_core_components as dcc
+import dash_html_components as html
+
+# Couleurs pour la barre de navigation
+colors = {
+    'theme':'dark',
+    'sidebar':'#2b2b2b'
+}
+
+# Barre de navigation
+navigationBar = dbc.NavbarSimple(
+    brand= "Dashboard",
+    brand_href="france",
+    color=colors['theme'],
+    dark=True,
+    sticky="top",
+    children=[
+        dbc.NavItem(dbc.NavLink("France", href="france")),
+        dbc.NavItem(dbc.NavLink("USA", href="usa")),
+        dbc.NavItem(dbc.NavLink("UK", href="uk")),
+    ]
+)
+```
+
+Ici on crée la barre de navigation.
+
+##### - Le corps de l'application : france.py, uk.py, usa.py et main.py
+
+On crée le corps de l'application en définissant les différents éléments de chaque onglet. Par exemple :
+
+```python
+...
+pageFrance = html.Div([
+    # Construction des onglets principaux
+    dcc.Tabs(id="tabs-styled-with-inline-france", value='tab-1-france', children=[
+        # Premier onglet "Top 10 best-selling albums"
+        dcc.Tab(label='Top 10 best-selling albums', value='tab-1-france', style=tab_style, selected_style=tab_selected_style),
+        # Second onglet "Graphs and statistics"
+        dcc.Tab(label='Graphs and statistics', value='tab-2-france', style=tab_style, selected_style=tab_selected_style),
+    ], style=tabs_styles),
+    html.Div(id='tabs-content-inline-france')
+])
+...
+```
+
+Ici, on crée les éléments de la page "France" tels que les différents onglets pour afficher les graphes.
+
+#### - Le serveur de l'application : main.py
+
+Dans cette section, on implémente le traitement dynamique des données en créant une interactivité entre les différents composants de l'application et les jeux de données. Par exemple :
+
+```python
+        ...
+fig = go.Figure(go.Choroplethmapbox(geojson=departement, 
+                                            featureidkey="properties.nom",
+                                            locations=Academie["Departement"], 
+                                            z=Academie[statistique_value],
+                                            text = Academie["Departement"], 
+                                            hovertext = Academie["Departement"], 
+                                            hovertemplate = etiquette,
+                                            zauto=True,
+                                            colorscale='viridis',
+                                            marker_opacity=0.8,
+                                            marker_line_width=0.8,
+                                            showscale=True))
+    fig.update_layout(title={'text':'Statistique par département','xref':'paper','x':0.5},
+                        margin={'l':10,'r':0,'t':50,'b':10},
+                        mapbox_style="carto-darkmatter",
+                        mapbox_zoom=4, 
+                        mapbox_center = {"lat": 46.7167, "lon": 2.5167})
+...
+```
+
+Ici, on implémente la carte qui va représenter les statistiques par département en fonction de l'année, du diplôme et de la discipline.

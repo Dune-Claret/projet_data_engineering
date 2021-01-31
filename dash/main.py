@@ -9,7 +9,7 @@ from dash.dependencies import Input, Output, State
 import pymongo
 from pymongo import MongoClient
 
-# Imports de fichiers en local
+# Imports locaux
 from uk import (pageUk, tab_1_uk, tab_2_uk)
 from usa import (pageUsa, tab_1_usa, tab_2_usa)
 from navigation_bar import navigationBar

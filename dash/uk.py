@@ -11,11 +11,11 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import scipy.stats as sc
-from requests_mongo import get_graphes
+#from requests_mongo import get_graphes
 
 # Variable pour la page
 country = 'UK'
-f1, f2, f3 = get_graphes(country)
+#f1, f2, f3 = get_graphes(country)
 
 tabs_styles = {
     'height': '44px'
@@ -332,7 +332,7 @@ tab_1_uk = html.Div([
     html.Div(
         [
             # Graphique
-            html.Div([dcc.Graph(figure = f3)], style = {}), 
+            html.Div([dcc.Graph(id="f3")], style = {}), #figure = f3
         ],
         style = {"flex":2, "display": "flex", "flex-direction": "column"},
     ),],
@@ -342,10 +342,10 @@ tab_1_uk = html.Div([
 tab_2_uk = html.Div(
     [
         # Graphique 1
-        html.Div([dcc.Graph(figure = f1)], style = {}), 
+        html.Div([dcc.Graph(id="f1")], style = {}), #figure = f1
 
         # Graphique 2
-        html.Div([dcc.Graph(figure = f2)], style = {}),
+        html.Div([dcc.Graph(id="f2")], style = {}), #figure = f2
     ],
     style = {"flex":2, "display": "flex", "flex-direction": "column", "padding":"0px", "margin":"0px"},
 )
