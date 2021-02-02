@@ -12,8 +12,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
 import plotly.graph_objects as go
+from requests_mongo import get_graphes
 
-
+# Variable pour la page
+country = 'France'
+f1, f2, f3 = get_graphes(country)
 
 def generate_dropdown(dataframe, feature):
     dropdown = list()
@@ -22,28 +25,6 @@ def generate_dropdown(dataframe, feature):
         dropdown.append({'label': element, 'value':element})
 
     return dropdown
-
-
-# Variables pour les elements de la page
-minYear = 1952 #france.year.min()
-maxYear = 2020 #france.year.max()
-dropdown_continents = ["Amérique du Nord", "Amérique du Sud", "Europe", 'Asie', 'Océanie'] #generate_dropdown(france, 'continent')
-dropdown_countries = ["USA", "France", "Australie"] #generate_dropdown(france, 'country')
-
-# Selection du type de groupe
-radioitems = dbc.FormGroup(
-    [
-        html.Li([dbc.Label("Select a group type")]),
-        dbc.RadioItems(
-            options=[
-                {"label": "Country", "value": "Countries"},
-                {"label": "Continent", "value": "Continents"},
-            ],
-            value="Countries",
-            id="radioitems-france-group",
-        ),
-    ]
-)
 
 # Page pour France
 pageFrance = html.Div([
@@ -125,88 +106,7 @@ pageFrance = html.Div([
 
             # Separation
             html.Br(),
-            html.Hr(style={"background-color":"white"}),  
-
-            # Fenetre pour region specifiee
-            """dbc.Modal(
-                [
-                    # Fenetre: Titre
-                    dbc.ModalHeader(id="header-france-group"),
-
-                    # Fenetre: Corps
-                    dbc.ModalBody([
-
-                        # Gauche: Graphique France homme/femme
-                        html.Div([
-                            dbc.Card([
-                                dbc.CardBody([
-                                    dcc.Graph(id="lineplot-france-graph", style={"height":520})
-                                ]),
-
-                                dbc.CardFooter([
-                                    # Label des annees du slider
-                                    dbc.Label(
-                                        "From {} to {}:".format(minYear, maxYear),
-                                        id="label-france-group-graph",
-                                    ),
-
-                                    # Selection de l'interval
-                                    dcc.RangeSlider(
-                                        id="slider-france-group-graph",
-                                        min=minYear,
-                                        max=maxYear,
-                                        value=[minYear, maxYear]
-                                    )
-                                ])
-                            ], outline=True, color="dark")
-                        ], style={"flex":3, "padding-right":5}),
-
-                        # Droite: Graphiques divers
-                        html.Div([
-                            dbc.Card([
-
-                                # Zone des graphiques
-                                dbc.CardBody([
-                                    dcc.Graph(id="piechart-france-miscellaneous", style={"height":260, "padding":0}),
-
-                                    html.Div(
-                                        html.H1([
-                                            dbc.Badge(id="ranking-france-miscellaneous", className="ml-1", color="secondary"),
-                                            html.P(id="ranking-text-france-miscellaneous")],
-                                        style={"text-align":"center", "padding-top":260* 2/6})
-                                    , style={"height":260})
-                                ]),
-
-                                # Pied de page des graphiques
-                                dbc.CardFooter([
-                                    # Label de l'annee selectionnee
-                                    dbc.Label(
-                                        "During the year {}".format(minYear),
-                                        id="label-france-miscellaneous"
-                                    ),
-
-                                    # Selection de l'annee
-                                    dcc.Slider(
-                                        id="slider-france-miscellaneous-graph",
-                                        min=minYear,
-                                        max=maxYear,
-                                        value=minYear
-                                    )
-                                ]),
-                            ], color="dark", outline=True),
-
-                        ], style={"flex":2, "padding-left":5})
-
-                    ], style = {"display":"flex"}),
-
-                    # Fenetre: Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-modal-france-group", color="danger", outline=True,block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-france-group",
-                size="xl"
-            ),"""
+            html.Hr(style={"background-color":"white"})
         ],
         style = {"flex":1, "padding":"20px"},
     ),
@@ -214,11 +114,14 @@ pageFrance = html.Div([
     # Cote droit
     html.Div(
         [
-            # Graphique: Carte choropleth France
-            html.Div([dcc.Graph(id='graph-map-france')], style = {}),
+            # Graphique 1
+            html.Div([dcc.Graph(figure = f1)], style = {}),
 
-            # Graphique: Distribution France
-            html.Div([dcc.Graph(id='graph-bar-france')], style = {}),
+            # Graphique 2
+            html.Div([dcc.Graph(figure = f2)], style = {}),
+
+            # Graphique 3
+            html.Div([dcc.Graph(figure = f3)], style = {}),
         ],
         style = {"flex":2, "display": "flex", "flex-direction": "column"},
     ),],
