@@ -359,19 +359,24 @@ Ce fichier prend le même rôle que des spiders. Il cherche des informations sup
 
 ##### - middlewares.py
 
-Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+Le middleware permet de traiter les demandes et les éléments générés par les spiders en gérant différents types d'éléments avec une seule interface. 
 
 ##### - items.py
 
-Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+ L'objectif principal du scraping est d'extraire des données structurées à partir de pages Web. Les spiders peuvent renvoyer les données extraites sous forme d'items. Ce fichier définit les modèles des "scraped items".
 
 ##### - pipelines.py
 
-Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+Ce fichier définit les pipelines des items.
+Une fois qu'un item a été scrapé par un spider, il est envoyé au pipeline des items qui le traite via plusieurs composants qui sont exécutés séquentiellement.
+Chaque composant de l'item pipeline est une classe python qui implémente une méthode simple. Ils reçoivent un élément et effectuent une action dessus, décidant également si l'élément doit continuer dans le pipeline ou être abandonné.
+Les pipelines valident notamment les données récupérées, suppriment les doublons, et stockent l'élément récupéré dans une base de données.
 
 ##### - settings.py
 
-Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+Ce fichier s'occupe des paramètres Scrapy du projet, en configurant les item pipelines et en respectant les règles du fichier robots.
+Les paramètres Scrapy permettent de personnaliser le comportement de tous les composants Scrapy, y compris les pipelines et les spiders.
+L'infrastructure des paramètres fournit un espace que le code peut utiliser pour extraire des valeurs de configuration. Les paramètres peuvent être renseignés via différents mécanismes.
 
 ##### - Spiders
 
@@ -529,7 +534,7 @@ Ce fichier contient la fonction get_graphes qui va créer trois graphiques pour 
 
 Ce fichier :
 
-- définit le setting de scrapy : les informations basiques pour déclencher le web scrapping,
+- définit le setting de scrapy : les informations basiques pour déclencher le web scraping,
 - se connecte à Mongo,
 - déclenche les spiders, qui récupèrent les données en ligne,
 - et insère les données récupérées dans le fichier Mongo.
