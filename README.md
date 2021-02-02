@@ -353,16 +353,17 @@ python3 -m pip freeze > requirements.txt
 
 #### - Le chargement des données : baby_yoda
 
-Dans cette section, on récupère les jeux de données nécessaires au fonctionnement de l'application. Par exemple:
+##### - webdriver.py
 
-```python
-# Lecture des fichiers de source
-diplome_dut = pd.read_csv("fr-esr-insertion_professionnelle-dut_donnees_nationales.csv", sep=';',na_values=["ns", "nd"])
-diplome_lp = pd.read_csv("fr-esr-insertion_professionnelle-lp.csv", sep=';', na_values=["ns", "nd"])
-diplome_master = pd.read_csv("fr-esr-insertion_professionnelle-master.csv", sep=';', na_values=["ns", "nd"])
+Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
 
-...
-```
+##### - Spiders
+
+- Top 10 en France, composé de deux spiders (le site français ne présentait pas de classements lorsque l'on sélectionnait les certifications les plus hautes. Il a donc fallu faire deux sélections pour avoir les 10 albums les plus vendus),
+
+- Top 10 au Royaume-Uni, contenant le spider pour le site britannique,
+
+- et le top 10 aux USA, contenant le spider pour le site américain.
 
 #### - La création de l'interface de l'application : dash
 
@@ -498,30 +499,21 @@ pageFrance = html.Div([
 
 Ici, on crée les éléments de la page "France" tels que les différents onglets pour afficher les graphes.
 
+##### - La création des graphes : requests_mongo.py
+
+Ce fichier contient la fonction get_graphes qui va créer trois graphiques pour un pays, il crée un curseur qui sélectionne les items associés au pays :
+
+1 - fig_sell_price : ce premier graphique affiche le prix par rapport au nombre de ventes, 
+
+2 - fig_genre_number : ce deuxième graphique est un histogramme du nombre d'albums par genre, 
+
+3 - et fig_year : ce troisième graphique est la répartition des albums dans le temps, par intervalle de cinq ans.
+
 #### - Le serveur de l'application : main.py
 
-Dans cette section, on implémente le traitement dynamique des données en créant une interactivité entre les différents composants de l'application et les jeux de données. Par exemple :
+Ce fichier :
 
-```python
-        ...
-fig = go.Figure(go.Choroplethmapbox(geojson=departement, 
-                                            featureidkey="properties.nom",
-                                            locations=Academie["Departement"], 
-                                            z=Academie[statistique_value],
-                                            text = Academie["Departement"], 
-                                            hovertext = Academie["Departement"], 
-                                            hovertemplate = etiquette,
-                                            zauto=True,
-                                            colorscale='viridis',
-                                            marker_opacity=0.8,
-                                            marker_line_width=0.8,
-                                            showscale=True))
-    fig.update_layout(title={'text':'Statistique par département','xref':'paper','x':0.5},
-                        margin={'l':10,'r':0,'t':50,'b':10},
-                        mapbox_style="carto-darkmatter",
-                        mapbox_zoom=4, 
-                        mapbox_center = {"lat": 46.7167, "lon": 2.5167})
-...
-```
-
-Ici, on implémente la carte qui va représenter les statistiques par département en fonction de l'année, du diplôme et de la discipline.
+- définit le setting de scrapy : les informations basiques pour déclencher le web scrapping,
+- se connecte à Mongo,
+- déclenche les spiders, qui récupèrent les données en ligne,
+- et insère les données récupérées dans le fichier Mongo.
