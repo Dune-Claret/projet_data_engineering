@@ -357,6 +357,22 @@ python3 -m pip freeze > requirements.txt
 
 Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
 
+##### - middlewares.py
+
+Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+
+##### - items.py
+
+Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+
+##### - pipelines.py
+
+Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+
+##### - settings.py
+
+Ce fichier prend le même rôle que des spiders. Il cherche des informations supplémentaires en ligne, par exemple le prix, l'année et le genre musical d'un album. Il contient seulement une fonction qui sera appelée dans le main.
+
 ##### - Spiders
 
 - Top 10 en France, composé de deux spiders (le site français ne présentait pas de classements lorsque l'on sélectionnait les certifications les plus hautes. Il a donc fallu faire deux sélections pour avoir les 10 albums les plus vendus),

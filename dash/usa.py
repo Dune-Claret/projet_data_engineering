@@ -16,7 +16,7 @@ import scipy.stats as sc
 from requests_mongo import get_graphes
 
 # Variables pour la page
-country = 'France'
+country = 'USA'
 f1, f2, f3 = get_graphes(country)
 
 tabs_styles = {
@@ -341,7 +341,7 @@ tab_1_usa = html.Div([
     style = {"display":"flex", " padding":"0px", "margin":"0px"}
 )
 
-tab_2_france = html.Div(
+tab_2_usa = html.Div(
     [
         # Graphique 1
         html.Div([dcc.Graph(figure = f1)], style = {}), 
