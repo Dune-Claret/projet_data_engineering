@@ -17,8 +17,6 @@ def get_graphes(country):
 
     # figure 1 : Price according to sells in the selected country
     fig_sell_price = px.scatter(df_France, x = "certif_UT", y = "price", title = "Price according to sells in " + country, hover_name = "certif_UT", hover_data=['price'])
-    sells = df_France['certif_UT'].to_list()
-    etiquette = 'Sells: %{sells:$.2f}<extra></extra>'
     fig_sell_price.update_traces(mode="markers", hovertemplate=None)
     fig_sell_price.update_layout(hovermode="x unified")
 

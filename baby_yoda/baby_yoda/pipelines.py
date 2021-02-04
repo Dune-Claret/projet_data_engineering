@@ -7,8 +7,6 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import pymongo
-import logging
-#from baby_yoda.webdriver import get_genre_year_price
 
 class BabyYodaPipeline:
     collection_name = 'top_albums'
@@ -32,7 +30,6 @@ class BabyYodaPipeline:
         self.client.close()
 
     def process_item(self, item, spider):
-        #self.searching_keys.append({"artist" : item['artist'], "album_title" : item['album_title']})
         item["certif_UT"] = int(item["certif_UT"])
         self.db[self.collection_name].insert_one(dict(item))
         return item

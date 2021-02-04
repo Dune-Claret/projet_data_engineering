@@ -341,7 +341,7 @@ tab_1_uk = html.Div([
     style = {"display":"flex", " padding":"0px", "margin":"0px"}
 )
 
-tab_2_france = html.Div(
+tab_2_uk = html.Div(
     [
         # Graphique 1
         html.Div([dcc.Graph(figure = f1)], style = {}), 
