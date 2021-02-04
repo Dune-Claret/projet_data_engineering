@@ -16,7 +16,7 @@ import scipy.stats as sc
 from requests_mongo import get_graphes
 
 # Variables pour la page
-country = 'France'
+country = 'UK'
 f1, f2, f3 = get_graphes(country)
 
 tabs_styles = {
