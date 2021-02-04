@@ -11,10 +11,7 @@ BOT_NAME = 'baby_yoda'
 
 SPIDER_MODULES = ['baby_yoda.spiders']
 NEWSPIDER_MODULE = 'baby_yoda.spiders'
-"""
-ITEM_PIPELINES = {
-   'baby_yoda.pipelines.BabyYodaPipeline': 300
-}"""
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'baby_yoda (+http://www.yourdomain.com)'

@@ -12,7 +12,7 @@ colors = {
 
 # Barre de navigation
 navigationBar = dbc.NavbarSimple(
-    brand= "Dashboard",
+    brand= "TOP ALBUMS IN THE WORLD",
     brand_href="france",
     color=colors['theme'],
     dark=True,

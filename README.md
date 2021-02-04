@@ -71,7 +71,6 @@ plotly
 scipy
 pymongo
 itemadapter
-logging
 selenium
 ```
 
@@ -114,11 +113,7 @@ README.md     main.py     ...
 ```
 
 On peut utiliser les commandes suivantes pour lancer l'application :
-```bash
-$ python3 main.py
-$ python3 dash/main.py
-```
-ou
+
 ```bash
 $ python main.py
 $ python dash/main.py
@@ -137,11 +132,7 @@ On peut utiliser les commandes suivantes pour lancer l'application :
 $ python3 main.py
 $ python3 dash/main.py
 ```
-Ou
-```bash
-$ python main.py
-$ python dash/main.py
-```
+
 
 Une fois exécuté, vous devriez voir cet affichage :
 ```bash
@@ -170,6 +161,7 @@ Il y a trois pages :
 - *France*,
 - *USA*,
 - et *UK*.
+<br>
 Ces pages sont accessibles en cliquant sur leur label, en haut à droite de la page.
 
 ### B. *France*
@@ -197,6 +189,7 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Le genre,
 - Le nombre de ventes,
 - Et le prix de l'album en CD sur Amazon.
+<br>
 Cela permet d'avoir accès à la fiche d'identité de l'album.
 
 #### Graphs and statistics
@@ -236,6 +229,7 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Le genre,
 - Le nombre de ventes,
 - Et le prix de l'album en CD sur Amazon.
+<br>
 Cela permet d'avoir accès à la fiche d'identité de l'album.
 
 #### Graphs and statistics
@@ -275,6 +269,7 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Le genre,
 - Le nombre de ventes,
 - Et le prix de l'album en CD sur Amazon.
+<br>
 Cela permet d'avoir accès à la fiche d'identité de l'album.
 
 #### Graphs and statistics
@@ -295,63 +290,19 @@ La partie inférieure de la page affiche un histogramme du nombre d'albums par g
 
 Dans ce Developper Guide, la structure, le code et le rôle des fichiers dans le projet seront expliqués.
 
-## 1. Les répertoires & fichiers
+## 1. La structure 
 
-Dans cette partie, on explique le rôle du répertoire et des fichiers.
+Notre projet contient 3 dossiers ainsi que 3 fichiers qui sont localisés au même niveau.
 
-### A. *images*
+### A. *Dossiers*
+
+#### a. *images*
 
 Ce répertoire contient les images servant principalement à la rédaction de ce guide.
 
-### B. *baby_yoda*
+#### b. *baby_yoda*
 
 Ce répertoire contient les fichiers permettant de faire les recherches et la récupération des données sur Internet.
-
-### C. *dash*
-
-Ce répertoire contient les fichiers permettant de créer l'interface graphique et d'implémenter le traitement dynamique des données en créant une interactivité entre les différents composants de l'application.
-
-### D. *chromedriver.exe*
-
-Ce fichier permet de créer le webdriver qui est en charge d'effectuer les recherches sur Chrome.
-
-### E. *main.py*
-
-Ce fichier contient le code permettant le traitement des données afin que l'on puisse les utiliser et les lire clairement. 
-
-### F. *README.md*
-
-Le présent fichier *Markdown* contient:
-- la présentation du projet avec la problématique,
-- le guide de l'utilisateur avec les instructions d'exécution,
-- et le guide du développeur.
-
-### G. *requirements.txt*
-
-
-Ce fichier texte contient les noms des différents packages nécessaires à l'utilisation du projet. 
-  
-Afin de le générer à nouveau si le projet a subi des modifications, il faudra utiliser une des commandes suivantes:
-
-```shell
-pip3 freeze > requirements.txt
-```
-
-```shell
-pip freeze > requirements.txt
-```
-
-```shell
-python -m pip freeze > requirements.txt
-```
-
-```shell
-python3 -m pip freeze > requirements.txt
-```
-
-## 2. Le code
-
-#### - Le chargement des données : baby_yoda
 
 ##### - webdriver.py
 
@@ -378,6 +329,7 @@ Ce fichier s'occupe des paramètres Scrapy du projet, en configurant les item pi
 Les paramètres Scrapy permettent de personnaliser le comportement de tous les composants Scrapy, y compris les pipelines et les spiders.
 L'infrastructure des paramètres fournit un espace que le code peut utiliser pour extraire des valeurs de configuration. Les paramètres peuvent être renseignés via différents mécanismes.
 
+
 ##### - Spiders
 
 - Top 10 en France, composé de deux spiders (le site français ne présentait pas de classements lorsque l'on sélectionnait les certifications les plus hautes. Il a donc fallu faire deux sélections pour avoir les 10 albums les plus vendus),
@@ -386,149 +338,38 @@ L'infrastructure des paramètres fournit un espace que le code peut utiliser pou
 
 - et le top 10 aux USA, contenant le spider pour le site américain.
 
-#### - La création de l'interface de l'application : dash
+#### c. *dash*
+
+Ce répertoire contient les fichiers permettant de créer l'interface graphique et d'implémenter le traitement dynamique des données en créant une interactivité entre les différents composants de l'application.
 
 Dans cette section, on crée l'interface de l'application en définissant le contenu du menu et du corps de l'application. 
 
-##### - Les scripts python
 
-Les scripts python sont structurés de la manière suivante:
+##### - La création des graphes : navigation_bar.py
 
-```python
-"""
-Module pour [rôle du script].
-"""
+Ce fichier construit le bar de navigation qui se situe en haut de l'interface et permet de naviguer entre les pays.
 
-# Import
-...
+##### - La création des graphes : france.py
 
-# Les fonctions
-...
+Ce fichier construit la page dédiée aux top albums français.
 
-# Les variables 
-...
-```
+##### - La création des graphes : uk.py
 
-###### - Les *import*
+Ce fichier construit la page dédiée aux top albums britanniques.
 
-Dans cette section du script, on charge les packages nécessaires pour remplir la fonction du script. Dans ces scripts on a deux types d'*import*:
+##### - La création des graphes : usa.py
 
-- Les *import* de packages:
-
-Dans ce cas on charge les modules de bases (*ex: pandas, numpy ou encore scipy*) comme dans l'exemple suivant:
-```python
-...
-# Imports
-import dash
-import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
-import pandas as pd
-...
-```
-> exemple: *main.py* 
-
-Ici le mot clé *as* permet d'utiliser un alias pour les packages.
-
-- Les *import* de modules locaux
-
-Dans ce cas on charge les modules locaux, c'est-à-dire les autres scripts au sein du projet. Par exemple dans le script *main.py*:
-```python
-# Import local
-from requests_mongo import get_graphes
-```
-> exemple: *france.py* 
-
-Ici on charge une fonction *get_graphes* provenant du script *requests_mongo*, mais il est également possible de charger des variables provenant des scripts *france.py*, *uk.py* et *usa.py*.
-
-###### - Les fonctions
-
-Dans cette section du script, on a la définition de toutes les fonctions. Par exemple:
-
-```python
-# Interactivite : Ouverture d'une fenêtre
-    def toggle_modal(n1, n2, is_open):
-        if n1 or n2:
-            return not is_open
-        return is_open
-```
-> exemple: *main.py*
-
-###### - Les variables
-
-Dans cette section du script, on a la définition de toutes les variables. Par exemple:
-
-```python
-# Variables pour la page
-country = 'France'
-f1, f2, f3 = get_graphes(country)
-```
-> exemple: *france.py*
-
-Ici par exemple la variable *country* est utilisé pour définir le pays correspondant à la page.
-
-##### - La barre de navigation : navigation_bar
-
-```bash
-# Imports
-import dash
-import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
-
-# Couleurs pour la barre de navigation
-colors = {
-    'theme':'dark',
-    'sidebar':'#2b2b2b'
-}
-
-# Barre de navigation
-navigationBar = dbc.NavbarSimple(
-    brand= "Dashboard",
-    brand_href="france",
-    color=colors['theme'],
-    dark=True,
-    sticky="top",
-    children=[
-        dbc.NavItem(dbc.NavLink("France", href="france")),
-        dbc.NavItem(dbc.NavLink("USA", href="usa")),
-        dbc.NavItem(dbc.NavLink("UK", href="uk")),
-    ]
-)
-```
-
-Ici on crée la barre de navigation.
-
-##### - Le corps de l'application : france.py, uk.py, usa.py et main.py
-
-On crée le corps de l'application en définissant les différents éléments de chaque onglet. Par exemple :
-
-```python
-...
-pageFrance = html.Div([
-    # Construction des onglets principaux
-    dcc.Tabs(id="tabs-styled-with-inline-france", value='tab-1-france', children=[
-        # Premier onglet "Top 10 best-selling albums"
-        dcc.Tab(label='Top 10 best-selling albums', value='tab-1-france', style=tab_style, selected_style=tab_selected_style),
-        # Second onglet "Graphs and statistics"
-        dcc.Tab(label='Graphs and statistics', value='tab-2-france', style=tab_style, selected_style=tab_selected_style),
-    ], style=tabs_styles),
-    html.Div(id='tabs-content-inline-france')
-])
-...
-```
-
-Ici, on crée les éléments de la page "France" tels que les différents onglets pour afficher les graphes.
+Ce fichier construit la page dédiée aux top albums américains.
 
 ##### - La création des graphes : requests_mongo.py
 
 Ce fichier contient la fonction get_graphes qui va créer trois graphiques pour un pays, il crée un curseur qui sélectionne les items associés au pays :
 
-1 - fig_sell_price : ce premier graphique affiche le prix par rapport au nombre de ventes, 
+1. fig_sell_price : ce premier graphique affiche le prix par rapport au nombre de ventes, 
 
-2 - fig_genre_number : ce deuxième graphique est un histogramme du nombre d'albums par genre, 
+2. fig_genre_number : ce deuxième graphique est un histogramme du nombre d'albums par genre, 
 
-3 - et fig_year : ce troisième graphique est la répartition des albums dans le temps, par intervalle de cinq ans.
+3. fig_year : ce troisième graphique est la répartition des albums dans le temps, par intervalle de cinq ans.
 
 #### - Le serveur de l'application : main.py
 
@@ -538,3 +379,21 @@ Ce fichier :
 - se connecte à Mongo,
 - déclenche les spiders, qui récupèrent les données en ligne,
 - et insère les données récupérées dans le fichier Mongo.
+
+### B. *fichiers*
+
+#### - *chromedriver.exe*
+
+Ce fichier permet de créer le webdriver qui est en charge d'effectuer les recherches sur Chrome.
+
+#### - *main.py*
+
+Ce fichier contient le code permettant le traitement des données afin que l'on puisse les utiliser et les lire clairement. 
+
+#### - *README.md*
+
+Le présent fichier *Markdown* contient:
+- la présentation du projet avec la problématique,
+- le guide de l'utilisateur avec les instructions d'exécution,
+- et le guide du développeur.
+
