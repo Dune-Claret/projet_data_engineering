@@ -235,7 +235,7 @@ Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y a
 
 #### Graphs and statistics
 
-![UK_window.PNG](images/UK_window.PNG)
+![UK_graphe.PNG](images/UK_graphe.PNG)
 
 La partie à gauche de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix. La partie à droite de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
