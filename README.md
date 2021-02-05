@@ -14,14 +14,6 @@ Nous voulions suivre l'évolution des albums les plus vendus dans le monde et vo
 
 <br>
 
-___
-
-# Table des matières
-
-[[_TOC_]]
-___
-
-
 # I. Guide utilisateur
 
 ## 1. Installation & Téléchargement
@@ -148,9 +140,7 @@ Ces pages sont accessibles en cliquant sur leur label, en haut à droite de la p
 
 ### B. *France*
 
-Une fois l'installation et l'exécution réussies, l'application s'ouvre sur la page suivante:
-
-![France_top_10_seller.PNG](images/France_top_10_seller.PNG)
+Une fois l'installation et l'exécution réussies, l'application s'ouvre sur la page des top 10 albums des ventes.
 
 #### Top 10 best-selling albums
 
@@ -171,8 +161,9 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Le genre,
 - Le nombre de ventes,
 - Et le prix de l'album en CD sur Amazon.
-<br>
+
 Cela permet d'avoir accès à la fiche d'identité de l'album.
+<br>
 <br>
 Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y aie des informations manquantes d'album.
 
@@ -183,8 +174,6 @@ Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y a
 La partie à gauche de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix. La partie à droite de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
 ### C. *USA*
-
-![USA_top_10_seller.PNG](images/USA_top_10_seller.PNG)
 
 #### Top 10 best-selling albums
 
@@ -205,8 +194,9 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Le genre,
 - Le nombre de ventes,
 - Et le prix de l'album en CD sur Amazon.
-<br>
+
 Cela permet d'avoir accès à la fiche d'identité de l'album.
+<br>
 <br>
 Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y aie des informations manquantes d'album.
 
@@ -217,8 +207,6 @@ Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y a
 La partie à gauche de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix. La partie à droite de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
 ### D. *UK*
-
-![UK_top_10_seller.PNG](images/UK_top_10_seller.PNG)
 
 #### Top 10 best-selling albums
 
@@ -239,8 +227,9 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Le genre,
 - Le nombre de ventes,
 - Et le prix de l'album en CD sur Amazon.
-<br>
+
 Cela permet d'avoir accès à la fiche d'identité de l'album.
+<br>
 <br>
 Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y aie des informations manquantes d'album.
 
