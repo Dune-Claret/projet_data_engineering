@@ -28,8 +28,7 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.baby_yoda
 collection = db['top_albums']
-#collection.delete_many({})
-
+collection.delete_many({})
 
 #start all spiders
 process = CrawlerProcess(settings=settings)
@@ -38,7 +37,6 @@ process.crawl(UKSpider)
 process.crawl(FR1Spider)
 process.crawl(FR2Spider)
 process.start()
-
 
 cur = collection.find({})
 nbr_album = cur.count()

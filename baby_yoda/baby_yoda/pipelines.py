@@ -31,5 +31,6 @@ class BabyYodaPipeline:
 
     def process_item(self, item, spider):
         item["certif_UT"] = int(item["certif_UT"])
+        #item["album_title"] = item["album_title"].upper()
         self.db[self.collection_name].insert_one(dict(item))
         return item

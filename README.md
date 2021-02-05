@@ -29,7 +29,7 @@ ___
 ### A. Python
 Dans un premier temps, afin d'exploiter notre projet, il est nécessaire de télécharger et installer le langage de base ***Python v3.X.X*** sur votre appareil. Pour cela, que votre appareil soit sous Linux, macOS, Windows ou autre, vous pouvez trouver la page de téléchargement de Python en cliquant [ici](https://www.python.org/downloads/), puis suivre les instructions d'installation.
 
-Après l'installation, vérifiez le fonctionnement sur votre appareil en tapant les commandes suivantes sur le terminal, l'nvite de commandes, le PowerShell ou autre selon votre système d'exploitation:
+Après l'installation, vérifiez le fonctionnement sur votre appareil en tapant les commandes suivantes sur le terminal, l'invite de commandes, le PowerShell ou autre selon votre système d'exploitation:
 
 ```bash
 $ python3 --version
@@ -72,24 +72,6 @@ scipy
 pymongo
 itemadapter
 selenium
-```
-
-On peut utiliser les commandes suivantes pour les télécharger et les installer :
-
-```bash
-pip install -r requirements.txt
-```
-
-```bash
-pip3 install -r requirements.txt
-```
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-```bash
-python3 -m pip install -r requirements.txt
 ```
 
 ## 2. Exécution
@@ -168,19 +150,19 @@ Ces pages sont accessibles en cliquant sur leur label, en haut à droite de la p
 
 Une fois l'installation et l'exécution réussies, l'application s'ouvre sur la page suivante:
 
-![pageechanti.PNG](images/pageechanti.PNG)
+![France_top_10_seller.PNG](images/France_top_10_seller.PNG)
 
 #### Top 10 best-selling albums
 
 - ##### Partie principale : Top 10
 
-![dde_1.PNG](images/dde_1.PNG)
+![France_top_10_seller.PNG](images/France_top_10_seller.PNG)
 
 La partie gauche de la page présente les boutons correspondant aux dix albums les plus vendus en France. Ces boutons ouvrent sur une page secondaire contenant les informations de l'album correspondant.  
 
 - ##### Page secondaire : Information sur l'album choisi
 
-![pageechanti.PNG](images/pageechanti.PNG)
+![France_window.PNG](images/France_window.PNG)
 
 La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations sur un album spécifique :
 - Le titre,
@@ -191,36 +173,30 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Et le prix de l'album en CD sur Amazon.
 <br>
 Cela permet d'avoir accès à la fiche d'identité de l'album.
+<br>
+Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y aie des informations manquantes d'album.
 
 #### Graphs and statistics
 
-- ##### Premier graphique
+![France_graphe.PNG](images/France_graphe.PNG)
 
-![dde_1.PNG](images/dde_1.PNG)
-
-La partie supérieure de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix.  
-
-- ##### Second graphique
-
-![pageechanti.PNG](images/pageechanti.PNG)
-
-La partie inférieure de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
+La partie à gauche de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix. La partie à droite de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
 ### C. *USA*
 
-![pageparan.PNG](images/pageparan.PNG)
+![USA_top_10_seller.PNG](images/USA_top_10_seller.PNG)
 
 #### Top 10 best-selling albums
 
 - ##### Partie principale : Top 10
 
-![dde_1.PNG](images/dde_1.PNG)
+![USA_top_10_seller.PNG](images/USA_top_10_seller.PNG)
 
 La partie gauche de la page présente les boutons correspondant aux dix albums les plus vendus en France. Ces boutons ouvrent sur une page secondaire contenant les informations de l'album correspondant.  
 
 - ##### Page secondaire : Information sur l'album choisi
 
-![pageechanti.PNG](images/pageechanti.PNG)
+![USA_window.PNG](images/USA_window.PNG)
 
 La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations sur un album spécifique :
 - Le titre,
@@ -231,36 +207,30 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Et le prix de l'album en CD sur Amazon.
 <br>
 Cela permet d'avoir accès à la fiche d'identité de l'album.
+<br>
+Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y aie des informations manquantes d'album.
 
 #### Graphs and statistics
 
-- ##### Premier graphique
+![USA_graphe.PNG](images/USA_graphe.PNG)
 
-![dde_1.PNG](images/dde_1.PNG)
-
-La partie supérieure de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix.  
-
-- ##### Second graphique
-
-![pageechanti.PNG](images/pageechanti.PNG)
-
-La partie inférieure de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
+La partie à gauche de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix. La partie à droite de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
 ### D. *UK*
 
-![pagedomaine.PNG](images/pagedomaine.PNG)
+![UK_top_10_seller.PNG](images/UK_top_10_seller.PNG)
 
 #### Top 10 best-selling albums
 
 - ##### Partie principale : Top 10
 
-![dde_1.PNG](images/dde_1.PNG)
+![UK_top_10_seller.PNG](images/UK_top_10_seller.PNG)
 
 La partie gauche de la page présente les boutons correspondant aux dix albums les plus vendus en France. Ces boutons ouvrent sur une page secondaire contenant les informations de l'album correspondant.  
 
 - ##### Page secondaire : Information sur l'album choisi
 
-![pageechanti.PNG](images/pageechanti.PNG)
+![UK_window.PNG](images/UK_window.PNG)
 
 La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations sur un album spécifique :
 - Le titre,
@@ -271,20 +241,16 @@ La fenêtre secondaire est une fenêtre qui donne accès à plus d'informations 
 - Et le prix de l'album en CD sur Amazon.
 <br>
 Cela permet d'avoir accès à la fiche d'identité de l'album.
+<br>
+Dans le cas où le site a été modifié du côté serveur, il se peut qu'il y aie des informations manquantes d'album.
 
 #### Graphs and statistics
 
-- ##### Premier graphique
+![UK_window.PNG](images/UK_window.PNG)
 
-![dde_1.PNG](images/dde_1.PNG)
+La partie à gauche de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix. La partie à droite de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
-La partie supérieure de la page affiche un "*scatter*" du prix en fonction du nombre de certifications. Cela permet de voir la corrélation entre le nombre de ventes et le prix.  
 
-- ##### Second graphique
-
-![pageechanti.PNG](images/pageechanti.PNG)
-
-La partie inférieure de la page affiche un histogramme du nombre d'albums par genre, en fonction du temps. Cela permet de mettre en évidence des tendances et modes musicales.
 
 # II. Guide développeur
 
@@ -345,23 +311,23 @@ Ce répertoire contient les fichiers permettant de créer l'interface graphique 
 Dans cette section, on crée l'interface de l'application en définissant le contenu du menu et du corps de l'application. 
 
 
-##### - La création des graphes : navigation_bar.py
+##### - navigation_bar.py
 
 Ce fichier construit le bar de navigation qui se situe en haut de l'interface et permet de naviguer entre les pays.
 
-##### - La création des graphes : france.py
+##### - france.py
 
 Ce fichier construit la page dédiée aux top albums français.
 
-##### - La création des graphes : uk.py
+##### - uk.py
 
 Ce fichier construit la page dédiée aux top albums britanniques.
 
-##### - La création des graphes : usa.py
+##### - usa.py
 
 Ce fichier construit la page dédiée aux top albums américains.
 
-##### - La création des graphes : requests_mongo.py
+##### - requests_mongo.py
 
 Ce fichier contient la fonction get_graphes qui va créer trois graphiques pour un pays, il crée un curseur qui sélectionne les items associés au pays :
 

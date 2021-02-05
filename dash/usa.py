@@ -17,22 +17,22 @@ from requests_mongo import get_graphes
 
 # Variables pour la page
 country = 'USA'
-f1, f2, f3 = get_graphes(country)
+f1, f2, f3, list_albums = get_graphes(country)
 
 tabs_styles = {
     'height': '44px'
 }
 tab_style = {
-    'borderBottom': '1px solid #d6d6d6',
+    'border': '0px solid rgb(105,105,105)',
     'padding': '6px',
-    'color': 'dark',
-    'fontWeight': 'bold'
+    'fontWeight': 'bold', 
+    "background-color":"rgb(105,105,105)"
 }
 
 tab_selected_style = {
-    'borderTop': '1px solid #d6d6d6',
-    'borderBottom': '1px solid #d6d6d6',
-    'color': 'dark',
+    'border': '0px solid rgb(105,105,105)',
+    'color': 'black',
+    "background-color":"rgb(105,105,105)",
     'padding': '6px'
 }
 
@@ -49,305 +49,400 @@ pageUsa = html.Div([
 
 tab_1_usa = html.Div([
     # Cote gauche
-    html.Div(
-        [
-            # Titre
-            html.H4("Top 10"),
+        html.Div(
+            [
+                # Titre
+                html.H4("Top 10 albums in USA"),
 
-            # Break
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                # Break
+                html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Titre 2
-            dbc.Button("Album1", id="button-usa-album1", color="light", outline=True, className="mr-1"),
+                # Titre 1
+                dbc.Button(list_albums[0]["album_title"], id="button-france-album1", color="light", outline=True, className="mr-1", block=True),
 
-            # Fenêtre 1
-            dbc.Modal(
-                [
-                    # Fenêtre 1 : Titre
-                    dbc.ModalHeader("Information"),
+                # Fenêtre 1
+                dbc.Modal(
+                    [
+                        # Fenêtre 1 : Titre
+                        dbc.ModalHeader("Information"),
 
-                    # Fenêtre 1 : Corps
-                    dbc.ModalBody("Information on the album1."),
-                    
-                    # Fenêtre 1 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-1", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-1",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                        
+                        # Fenêtre 1 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[0]['artist']),
+                            html.Div("Album title : " + list_albums[0]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[0]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[0]['label']), 
+                            html.Div("Country : " + list_albums[0]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[0]['genre'])),
+                            html.Div("Price : " + str(list_albums[0]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[0]['year']))
+                        ]),
 
-            # Separation
-            html.Hr(style={"background-color":"white"}),
+                        
+                        # Fenêtre 1 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-1", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-1",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 3
-            dbc.Button("Album2", id="button-usa-album2", color="light", outline=True, className="mr-1"),
+                # Separation
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 2
-            dbc.Modal(
-                [
-                    # Fenêtre 2 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 2
+                dbc.Button(list_albums[1]["album_title"], id="button-france-album2", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 2 : Corps
-                    dbc.ModalBody("Information on the album2."),
-                    
-                    # Fenêtre 2 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-2", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-2",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 2
+                dbc.Modal(
+                    [
+                        # Fenêtre 2 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 2 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[1]['artist']),
+                            html.Div("Album title : " + list_albums[1]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[1]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[1]['label']), 
+                            html.Div("Country : " + list_albums[1]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[1]['genre'])),
+                            html.Div("Price : " + str(list_albums[1]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[1]['year']))
+                        ]),
+                        
+                        # Fenêtre 2 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-2", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-2",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 4
-            dbc.Button("Album3", id="button-usa-album3", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 3
-            dbc.Modal(
-                [
-                    # Fenêtre 3 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 3
+                dbc.Button(list_albums[2]["album_title"], id="button-france-album3", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 3 : Corps
-                    dbc.ModalBody("Information on the album3."),
-                    
-                    # Fenêtre 3 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-3", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-3",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 3
+                dbc.Modal(
+                    [
+                        # Fenêtre 3 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 3 : Corps
+                        dbc.ModalBody([html.Div("Artist : "+ list_albums[2]['artist']),
+                            html.Div("Album title : " + list_albums[2]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[2]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[2]['label']), 
+                            html.Div("Country : " + list_albums[2]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[2]['genre'])),
+                            html.Div("Price : " + str(list_albums[2]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[2]['year']))]),
+                        
+                        # Fenêtre 3 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-3", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-3",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 5
-            dbc.Button("Album4", id="button-usa-album4", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 4
-            dbc.Modal(
-                [
-                    # Fenêtre 4 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 4
+                dbc.Button(list_albums[3]["album_title"], id="button-france-album4", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 4 : Corps
-                    dbc.ModalBody("Information on the album4."),
-                    
-                    # Fenêtre 4 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-4", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-4",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 4
+                dbc.Modal(
+                    [
+                        # Fenêtre 4 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 4 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[3]['artist']),
+                            html.Div("Album title : " + list_albums[3]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[3]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[3]['label']), 
+                            html.Div("Country : " + list_albums[3]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[3]['genre'])),
+                            html.Div("Price : " + str(list_albums[3]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[3]['year']))
+                        ]),
+                        
+                        # Fenêtre 4 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-4", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-4",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 6
-            dbc.Button("Album5", id="button-usa-album5", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 5
-            dbc.Modal(
-                [
-                    # Fenêtre 5 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 5
+                dbc.Button(list_albums[4]["album_title"], id="button-france-album5", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 5 : Corps
-                    dbc.ModalBody("Information on the album5."),
-                    
-                    # Fenêtre 5 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-5", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-5",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 5
+                dbc.Modal(
+                    [
+                        # Fenêtre 5 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 5 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[4]['artist']),
+                            html.Div("Album title : " + list_albums[4]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[4]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[4]['label']), 
+                            html.Div("Country : " + list_albums[4]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[4]['genre'])),
+                            html.Div("Price : " + str(list_albums[4]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[4]['year']))
+                        ]),
+                        
+                        # Fenêtre 5 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-5", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-5",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 7
-            dbc.Button("Album6", id="button-usa-album6", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 6
-            dbc.Modal(
-                [
-                    # Fenêtre 6 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 6
+                dbc.Button(list_albums[5]["album_title"], id="button-france-album6", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 6 : Corps
-                    dbc.ModalBody("Information on the album6."),
-                    
-                    # Fenêtre 6 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-6", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-6",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 6
+                dbc.Modal(
+                    [
+                        # Fenêtre 6 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 6 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[5]['artist']),
+                            html.Div("Album title : " + list_albums[5]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[5]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[5]['label']), 
+                            html.Div("Country : " + list_albums[5]['country']), 
+                            html.Div("Genre : " + ' '.join(e for e in list_albums[5]['genre'])),
+                            html.Div("Price : " + str(list_albums[5]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[5]['year']))
+                        ]),
+                        
+                        # Fenêtre 6 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-6", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-6",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 8
-            dbc.Button("Album7", id="button-usa-album7", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 7
-            dbc.Modal(
-                [
-                    # Fenêtre 7 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 7
+                dbc.Button(list_albums[6]["album_title"], id="button-france-album7", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 7 : Corps
-                    dbc.ModalBody("Information on the album7."),
-                    
-                    # Fenêtre 7 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-7", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-7",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 7
+                dbc.Modal(
+                    [
+                        # Fenêtre 7 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 7 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[6]['artist']),
+                            html.Div("Album title : " + list_albums[6]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[6]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[6]['label']), 
+                            html.Div("Country : " + list_albums[6]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[6]['genre'])),
+                            html.Div("Price : " + str(list_albums[6]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[6]['year']))
+                        ]),
+                        
+                        # Fenêtre 7 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-7", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-7",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 9
-            dbc.Button("Album8", id="button-usa-album8", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 8
-            dbc.Modal(
-                [
-                    # Fenêtre 8 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 8
+                dbc.Button(list_albums[7]["album_title"], id="button-france-album8", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 8 : Corps
-                    dbc.ModalBody("Information on the album8."),
-                    
-                    # Fenêtre 8 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-8", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-8",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 8
+                dbc.Modal(
+                    [
+                        # Fenêtre 8 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 8 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[7]['artist']),
+                            html.Div("Album title : " + list_albums[7]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[7]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[7]['label']), 
+                            html.Div("Country : " + list_albums[7]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[7]['genre'])),
+                            html.Div("Price : " + str(list_albums[7]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[7]['year']))
+                        ]),
+                        
+                        # Fenêtre 8 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-8", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-8",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 10
-            dbc.Button("Album9", id="button-usa-album9", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 9
-            dbc.Modal(
-                [
-                    # Fenêtre 9 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 9
+                dbc.Button(list_albums[8]["album_title"], id="button-france-album9", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 9 : Corps
-                    dbc.ModalBody("Information on the album9."),
-                    
-                    # Fenêtre 9 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-9", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-9",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 9
+                dbc.Modal(
+                    [
+                        # Fenêtre 9 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),
+                        # Fenêtre 9 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[8]['artist']),
+                            html.Div("Album title : " + list_albums[8]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[8]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[8]['label']), 
+                            html.Div("Country : " + list_albums[8]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[8]['genre'])),
+                            html.Div("Price : " + str(list_albums[8]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[8]['year']))
+                        ]),
+                        
+                        # Fenêtre 9 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-9", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-9",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
-            # Titre 11
-            dbc.Button("Album10", id="button-usa-album10", color="light", outline=True, className="mr-1"),
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),
 
-            # Fenêtre 10
-            dbc.Modal(
-                [
-                    # Fenêtre 10 : Titre
-                    dbc.ModalHeader("Information"),
+                # Titre 10
+                dbc.Button(list_albums[9]["album_title"], id="button-france-album10", color="light", outline=True, className="mr-1", block=True),
 
-                    # Fenêtre 10 : Corps
-                    dbc.ModalBody("Information on the album10."),
-                    
-                    # Fenêtre 10 : Pied de page
-                    dbc.ModalFooter(
-                        dbc.Button("Close", id="close-usa-album-10", color="danger", outline=True, block=True, className="ml-auto")
-                    ),
-                ],
-                id="modal-usa-album-10",
-                size="xl",
-                scrollable=True,
-                centered=True,
-            ),
+                # Fenêtre 10
+                dbc.Modal(
+                    [
+                        # Fenêtre 10 : Titre
+                        dbc.ModalHeader("Information"),
 
-            # Separation
-            html.Br(),
-            html.Hr(style={"background-color":"white"}),  
-        ],
-        style = {"flex":1, "padding":"20px"},
-    ),
+                        # Fenêtre 10 : Corps
+                        dbc.ModalBody([
+                            html.Div("Artist : "+ list_albums[9]['artist']),
+                            html.Div("Album title : " + list_albums[9]['album_title']), 
+                            html.Div("Selling number : " + str(list_albums[9]['certif_UT'])), 
+                            html.Div("Label : " + list_albums[9]['label']), 
+                            html.Div("Country : " + list_albums[9]['country']), 
+                            html.Div("Genre : " + ', '.join(e for e in list_albums[9]['genre'])),
+                            html.Div("Price : " + str(list_albums[9]['price']) + "€"),
+                            html.Div("Year : " + str(list_albums[9]['year']))
+                        ]),
+                        
+                        # Fenêtre 10 : Pied de page
+                        dbc.ModalFooter(
+                            dbc.Button("Close", id="close-france-album-10", color="danger", outline=True, block=True, className="ml-auto")
+                        ),
+                    ],
+                    id="modal-france-album-10",
+                    size="sm",
+                    scrollable=True,
+                    centered=True,
+                ),
 
+                # Separation
+                #html.Br(),
+                html.Hr(style={"background-color":"white"}),  
+            ],
+            style = {"flex":1, "padding":"20px"},
+        ), 
+    
     # Cote droit
     html.Div(
         [
             # Graphique
-            html.Div([dcc.Graph(figure = f3)], style = {}), 
+            html.Div([dcc.Graph(figure = f3)], style = {})
         ],
         style = {"flex":2, "display": "flex", "flex-direction": "column"},
-    ),],
-    style = {"display":"flex", " padding":"0px", "margin":"0px"}
-)
+    )
+
+],style = {"display":"flex", " padding":"0px", "margin":"0px"})
+
 
 tab_2_usa = html.Div(
     [
-        # Graphique 1
-        html.Div([dcc.Graph(figure = f1)], style = {}), 
-
-        # Graphique 2
-        html.Div([dcc.Graph(figure = f2)], style = {}), 
+        html.Div([
+                  html.Div([
+                    dcc.Graph(figure = f1)
+                  ], style={'width': '50%','display': 'inline-block', 'height' : "600px"}),
+                  html.Div([
+                    dcc.Graph(figure = f2)
+                  ], style={'width': '50%','display': 'inline-block', 'height' : "600px"})]
+        , style = {'width': '100%', 'display': 'inline-block'})
+        
     ],
-    style = {"flex":2, "display": "flex", "flex-direction": "column", "padding":"0px", "margin":"0px"},
+    style = {"flex":2, "display": "flex", "flex-direction": "column", "padding":"0px", "margin":"0px", "background-color" : "rgb(235, 236, 240)"},
 )

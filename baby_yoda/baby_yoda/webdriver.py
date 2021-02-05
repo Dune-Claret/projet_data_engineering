@@ -26,39 +26,46 @@ def get_genre_year_price(artist, album_title):
     search_bar_discogs.send_keys(album_title + " ‎– " + artist)
 
     #show the searching result menu and click on the first element 
-    chrome.implicitly_wait(5)
-    cartes = chrome.find_elements_by_class_name("ui-menu-item")
-    cpt = 0
-    for element in cartes :
-        cpt += 1
-        try :
-            if "(toutes les versions)" in element.text:
-                #element.click()
-                chrome.execute_script("arguments[0].click();", element)
-                break
-        except exceptions.StaleElementReferenceException:
-            pass
-    if cpt == len(cartes) :
-        cartes[0].click()
+    try :
+        chrome.implicitly_wait(5)
+        cartes = chrome.find_elements_by_class_name("ui-menu-item")
+        cpt = 0
+        for element in cartes :
+            cpt += 1
+            try :
+                if "(toutes les versions)" in element.text:
+                    #element.click()
+                    chrome.execute_script("arguments[0].click();", element)
+                    break
+            except exceptions.StaleElementReferenceException:
+                pass
+        if cpt == len(cartes) :
+            cartes[0].click()
 
 
-
-
-    #get the genre and the year as album information and show it 
-    heads = chrome.find_elements_by_class_name('head')
-    infos = chrome.find_elements_by_class_name("content")
-    iterator_genre = 0
-    iterator_year = 0
-    for i in range(len(heads)):
-        if heads[i].text == "Genre:":
-            iterator_genre = i
-        elif heads[i].text in ["Year:", "Année:", "Sortie:"] :
-            iterator_year = i
-        else : pass
-    
-    #get genre and year
-    genre = [element.text for element in infos][iterator_genre]
-    year = int([element.text for element in infos][iterator_year])
+        #get the genre and the year as album information and show it 
+        heads = chrome.find_elements_by_class_name('head')
+        infos = chrome.find_elements_by_class_name("content")
+        iterator_genre = 0
+        iterator_year = 0
+        #if len(heads) != 0:
+        for i in range(len(heads)):
+            if heads[i].text == "Genre:":
+                iterator_genre = i
+            elif heads[i].text in ["Year:", "Année:", "Sortie:"] :
+                iterator_year = i
+            else : pass
+            #get genre and year
+        genre = [element.text for element in infos][iterator_genre]
+        year = int([element.text for element in infos][iterator_year])
+        """else :
+            genre = ""
+            year = 0"""
+        
+    except Exception:
+        genre = ""
+        year = 0
+        pass
 
     # connect the site amazon ==> to find the price of the album
     chrome.get("https://www.amazon.fr")
@@ -80,6 +87,7 @@ def get_genre_year_price(artist, album_title):
         price = float(prices[0].text.replace(",", "."))
     except NoSuchElementException:
         price = 0
+
 
     chrome.close()
     return genre, year, price
